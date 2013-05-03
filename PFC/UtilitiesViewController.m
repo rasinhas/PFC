@@ -45,7 +45,7 @@
     if([self isValid:self.neighTextField]) {
         
     } else {
-        [self showNeighbourhoodError];
+        [self showError:self.NeighbourhoodErrorMessage];
     }
 }
 
@@ -53,7 +53,7 @@
     if([self isValid:self.neighTextField]) {
         
     } else {
-        [self showNeighbourhoodError];
+        [self showError:self.NeighbourhoodErrorMessage];
     }
 }
 
@@ -61,7 +61,7 @@
     if([self isValid:self.neighTextField]) {
         
     } else {
-        [self showNeighbourhoodError];
+        [self showError:self.NeighbourhoodErrorMessage];
     }
 }
 

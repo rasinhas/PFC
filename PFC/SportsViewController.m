@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        [self.neighTextField setDelegate:self];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -33,6 +34,43 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)footballFilter:(id)sender {
+    if([self isValid:self.neighTextField]) {
+        
+    } else {
+        [self showError:self.NeighbourhoodErrorMessage];
+    }
+}
+
+- (IBAction)basketballFilter:(id)sender {
+    if([self isValid:self.neighTextField]) {
+        
+    } else {
+        [self showError:self.NeighbourhoodErrorMessage];
+    }
+}
+
+- (IBAction)volleyBallFilter:(id)sender {
+    if([self isValid:self.neighTextField]) {
+        
+    } else {
+        [self showError:self.NeighbourhoodErrorMessage];
+    }
+}
+
+- (IBAction)olympicFilter:(id)sender {
+    if([self isValid:self.neighTextField]) {
+        
+    } else {
+        [self showError:self.NeighbourhoodErrorMessage];
+    }
+}
+
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

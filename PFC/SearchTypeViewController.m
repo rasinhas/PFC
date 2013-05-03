@@ -9,6 +9,7 @@
 #import "SearchTypeViewController.h"
 #import "UtilitiesViewController.h"
 #import "RestaurantsViewController.h"
+#import "SportsViewController.h"
 
 @interface SearchTypeViewController ()
 
@@ -48,6 +49,8 @@
 }
 
 - (IBAction)sportsView:(id)sender {
+    UIViewController *sports = [[SportsViewController alloc] initWithNibName:@"SportsViewController" bundle:nil];
+    [self presentViewController:sports animated:YES completion:nil];
 }
 
 - (IBAction)cultureView:(id)sender {

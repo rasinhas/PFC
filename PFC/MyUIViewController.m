@@ -18,6 +18,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    //Declarando mensagens de erro
+    self.neighbourhoodErrorMessage = @"Please enter the desired search Neighbourhood.";
     if (self) {
         // Custom initialization
     }
@@ -52,9 +54,9 @@
     
 }
 
-- (void) showNeighbourhoodError
+- (void) showError:(NSString *)errorMessage
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter the desired search Neighbourhood" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
     [alert show];
 }
 

@@ -81,5 +81,25 @@
 }
 
 - (IBAction)search:(id)sender {
+    NSString *errors = @"";
+    if([self isValid:self.neighTextField]){
+        
+    } else {
+        errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
+    }
+    
+    if(self.baconOutlet.selected) {
+    } else if(self.restaurantsOutlet.selected) {
+    } else if(self.barsOutlet.selected) {
+    } else if(self.fastFoodOutlet.selected) {
+    } else {
+        errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
+    }
+    
+    if([ errors isEqualToString:@"" ]) {
+        //TODO:Integração
+    } else {
+        [self showError:errors];
+    }
 }
 @end

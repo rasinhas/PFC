@@ -10,5 +10,11 @@
 #import "MyUIViewController.h"
 
 @interface SportsViewController : MyUIViewController <UITextFieldDelegate>
+- (IBAction)footballFilter:(id)sender;
+- (IBAction)basketballFilter:(id)sender;
+- (IBAction)volleyBallFilter:(id)sender;
+- (IBAction)olympicFilter:(id)sender;
+- (IBAction)back:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *neighTextField;
 
 @end

@@ -11,8 +11,9 @@
 @interface MyUIViewController : UIViewController
 
 - (BOOL) isValid: (UITextField *) textField;
-- (void) showNeighbourhoodError;
+- (void) showError:(NSString *) errorMessage;
 - (void)prettify:(UIButton *)button;
 - (void)changeColor:(UIButton *)button ofIndex:(int)index;
+@property (weak,nonatomic) NSString *NeighbourhoodErrorMessage;
 
 @end
