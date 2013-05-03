@@ -41,41 +41,27 @@
 }
 
 
-- (BOOL) isValid {
-    if([self.neighTextField.text isEqualToString:@""]) {
-        return NO;
-    } else {
-        return YES;
-    }
-    
-}
-
-- (void) showError {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please enter the desired search Neighbourhood" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-    [alert show];
-}
-
 - (IBAction)policeFilter:(id)sender {
-    if([self isValid]) {
+    if([self isValid:self.neighTextField]) {
         
     } else {
-        [self showError];
+        [self showNeighbourhoodError];
     }
 }
 
 - (IBAction)firemanFilter:(id)sender {
-    if([self isValid]) {
+    if([self isValid:self.neighTextField]) {
         
     } else {
-        [self showError];
+        [self showNeighbourhoodError];
     }
 }
 
 - (IBAction)hospitalFilter:(id)sender {
-    if([self isValid]) {
+    if([self isValid:self.neighTextField]) {
         
     } else {
-        [self showError];
+        [self showNeighbourhoodError];
     }
 }
 

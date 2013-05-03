@@ -10,4 +10,9 @@
 
 @interface MyUIViewController : UIViewController
 
+- (BOOL) isValid: (UITextField *) textField;
+- (void) showNeighbourhoodError;
+- (void)prettify:(UIButton *)button;
+- (void)changeColor:(UIButton *)button ofIndex:(int)index;
+
 @end

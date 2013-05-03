@@ -31,6 +31,11 @@
 		91F3C2A8173007AF00E00995 /* RestaurantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3C2A6173007AE00E00995 /* RestaurantsViewController.m */; };
 		91F3C2A9173007AF00E00995 /* RestaurantsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F3C2A7173007AF00E00995 /* RestaurantsViewController.xib */; };
 		91F3C2B8173297C600E00995 /* MyUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3C2B7173297C600E00995 /* MyUIViewController.m */; };
+		91F3C2BA1732AD9400E00995 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F3C2B91732AD9400E00995 /* QuartzCore.framework */; };
+		91F3C2BE1733E35800E00995 /* SportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3C2BC1733E35800E00995 /* SportsViewController.m */; };
+		91F3C2BF1733E35800E00995 /* SportsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F3C2BD1733E35800E00995 /* SportsViewController.xib */; };
+		91F3C2C31733E37100E00995 /* CultureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3C2C11733E37000E00995 /* CultureViewController.m */; };
+		91F3C2C41733E37100E00995 /* CultureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F3C2C21733E37100E00995 /* CultureViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +75,13 @@
 		91F3C2A7173007AF00E00995 /* RestaurantsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantsViewController.xib; sourceTree = "<group>"; };
 		91F3C2B6173297C600E00995 /* MyUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUIViewController.h; sourceTree = "<group>"; };
 		91F3C2B7173297C600E00995 /* MyUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUIViewController.m; sourceTree = "<group>"; };
+		91F3C2B91732AD9400E00995 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		91F3C2BB1733E35700E00995 /* SportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportsViewController.h; sourceTree = "<group>"; };
+		91F3C2BC1733E35800E00995 /* SportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportsViewController.m; sourceTree = "<group>"; };
+		91F3C2BD1733E35800E00995 /* SportsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SportsViewController.xib; sourceTree = "<group>"; };
+		91F3C2C01733E37000E00995 /* CultureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CultureViewController.h; sourceTree = "<group>"; };
+		91F3C2C11733E37000E00995 /* CultureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CultureViewController.m; sourceTree = "<group>"; };
+		91F3C2C21733E37100E00995 /* CultureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CultureViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F3C2BA1732AD9400E00995 /* QuartzCore.framework in Frameworks */,
 				916162E816E63971003E0824 /* UIKit.framework in Frameworks */,
 				916162EA16E63971003E0824 /* Foundation.framework in Frameworks */,
 				916162EC16E63971003E0824 /* CoreGraphics.framework in Frameworks */,
@@ -106,6 +119,7 @@
 		916162E616E63971003E0824 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91F3C2B91732AD9400E00995 /* QuartzCore.framework */,
 				916162E716E63971003E0824 /* UIKit.framework */,
 				916162E916E63971003E0824 /* Foundation.framework */,
 				916162EB16E63971003E0824 /* CoreGraphics.framework */,
@@ -130,6 +144,12 @@
 				91F3C29B172FF27900E00995 /* SearchTypeViewController.h */,
 				91F3C29C172FF27900E00995 /* SearchTypeViewController.m */,
 				91F3C29D172FF27900E00995 /* SearchTypeViewController.xib */,
+				91F3C2C01733E37000E00995 /* CultureViewController.h */,
+				91F3C2C11733E37000E00995 /* CultureViewController.m */,
+				91F3C2C21733E37100E00995 /* CultureViewController.xib */,
+				91F3C2BB1733E35700E00995 /* SportsViewController.h */,
+				91F3C2BC1733E35800E00995 /* SportsViewController.m */,
+				91F3C2BD1733E35800E00995 /* SportsViewController.xib */,
 				91F3C2A5173007AE00E00995 /* RestaurantsViewController.h */,
 				91F3C2A6173007AE00E00995 /* RestaurantsViewController.m */,
 				91F3C2A7173007AF00E00995 /* RestaurantsViewController.xib */,
@@ -222,6 +242,8 @@
 				91F3C29F172FF27900E00995 /* SearchTypeViewController.xib in Resources */,
 				91F3C2A4172FFE4700E00995 /* UtilitiesViewController.xib in Resources */,
 				91F3C2A9173007AF00E00995 /* RestaurantsViewController.xib in Resources */,
+				91F3C2BF1733E35800E00995 /* SportsViewController.xib in Resources */,
+				91F3C2C41733E37100E00995 /* CultureViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +264,8 @@
 				91F3C2A3172FFE4700E00995 /* UtilitiesViewController.m in Sources */,
 				91F3C2A8173007AF00E00995 /* RestaurantsViewController.m in Sources */,
 				91F3C2B8173297C600E00995 /* MyUIViewController.m in Sources */,
+				91F3C2BE1733E35800E00995 /* SportsViewController.m in Sources */,
+				91F3C2C31733E37100E00995 /* CultureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

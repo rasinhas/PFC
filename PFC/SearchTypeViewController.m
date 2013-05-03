@@ -8,6 +8,7 @@
 
 #import "SearchTypeViewController.h"
 #import "UtilitiesViewController.h"
+#import "RestaurantsViewController.h"
 
 @interface SearchTypeViewController ()
 
@@ -42,6 +43,8 @@
 }
 
 - (IBAction)restaurantsView:(id)sender {
+    UIViewController *restaurants = [[RestaurantsViewController alloc] initWithNibName:@"RestaurantsViewController" bundle:nil];
+    [self presentViewController:restaurants animated:YES completion:nil];
 }
 
 - (IBAction)sportsView:(id)sender {
