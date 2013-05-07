@@ -43,7 +43,7 @@
 
 - (IBAction)policeFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -51,7 +51,7 @@
 
 - (IBAction)firemanFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -59,7 +59,7 @@
 
 - (IBAction)hospitalFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];   
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }

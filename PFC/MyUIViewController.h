@@ -12,8 +12,10 @@
 
 - (BOOL) isValid: (UITextField *) textField;
 - (void) showError:(NSString *) errorMessage;
+- (void) showResults:(NSArray *) results;
 - (void)prettify:(UIButton *)button;
 - (void)changeColor:(UIButton *)button ofIndex:(int)index;
+- (void)notImplementedError;
 @property (weak,nonatomic) NSString *NeighbourhoodErrorMessage;
 
 @end

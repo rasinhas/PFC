@@ -8,6 +8,7 @@
 
 #import "MyUIViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ShowResultsViewController.h"
 
 @interface MyUIViewController ()
 
@@ -91,6 +92,12 @@
     [self setDefaultButtonColor:button];
 }
 
+- (void) notImplementedError
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Feature not implemented yet." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (BOOL) shouldAutorotate
 {
     return NO;
@@ -99,6 +106,13 @@
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+-(void) showResults:(NSArray *)results
+{
+    ShowResultsViewController *resultsView = [[ShowResultsViewController alloc] initWithNibName:@"ShowResultsViewController" bundle:nil];
+    resultsView.results = results;
+    [self presentViewController:resultsView animated:YES completion:nil];
 }
 
 @end

@@ -54,6 +54,7 @@
 }
 
 - (IBAction)cultureView:(id)sender {
+    [self notImplementedError];
 }
 
 - (IBAction)returnMenu:(id)sender {
