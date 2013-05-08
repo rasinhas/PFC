@@ -1,26 +1,30 @@
 //
-//  ShowResultsViewController.m
+//  ShowResultViewController.m
 //  PFC
 //
-//  Created by Felipe Rasinhas on 5/7/13.
+//  Created by Felipe Rasinhas on 5/8/13.
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "ShowResultsViewController.h"
+#import "ShowResultViewController.h"
 #import "TDBadgedCell/TDBadgedCell.h"
 #import "MapViewController.h"
 
-@interface ShowResultsViewController ()
+@interface ShowResultViewController ()
 
 @end
 
-@implementation ShowResultsViewController
+@implementation ShowResultViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.resultsTable = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStyleGrouped];
+        self.resultsTable.delegate = self;
+        self.resultsTable.dataSource = self;
+        self.resultsTable.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        self.view = self.resultsTable;
     }
     return self;
 }
@@ -28,18 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Vialink", @"name",
-                          @"Empresa: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
-                          @"-22.925657", @"latitude",
-                          @"-43.240798", @"longitude",
-                          nil];
-    self.results = [[NSArray alloc] initWithObjects:test, nil];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    //FIXME: DEBUG
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,8 +53,11 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *description = [[self.results objectAtIndex:indexPath.row] objectForKey:@"description"];
+    if ([ self.results count] == 0) {
+        return 100.0;
+    }
     
+    NSString *description = [[self.results objectAtIndex:indexPath.row] objectForKey:@"description"];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@":" options:NSRegularExpressionCaseInsensitive error:nil];
     NSInteger n = [regex numberOfMatchesInString:description options:0 range:NSMakeRange(0, [description length])];
     n = MAX(n, 4);
@@ -69,10 +67,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (self.results.count == 0) {
+    if ([self.results count] == 0) {
         return 1;
     }
-    return self.results.count;
+    return [self.results count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -88,7 +86,8 @@
         cell = [[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    if (self.results.count == 0) {
+    
+    if ([self.results count] == 0) {
         
         cell.textLabel.text = @"Error";
         cell.detailTextLabel.text = @"No results found for your search";
@@ -106,46 +105,44 @@
     return cell;
 }
 
-
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -162,4 +159,5 @@
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end
