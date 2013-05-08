@@ -8,6 +8,7 @@
 
 #import "RestaurantsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SearchTypeViewController.h"
 
 @interface RestaurantsViewController ()
 
@@ -82,24 +83,28 @@
 
 - (IBAction)search:(id)sender {
     NSString *errors = @"";
-    if([self isValid:self.neighTextField]){
-        
-    } else {
+    NSString *query = @"";
+    if([self isValid:self.neighTextField] == NO){
         errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
-    }
-    
-    if(self.baconOutlet.selected) {
-    } else if(self.restaurantsOutlet.selected) {
-    } else if(self.barsOutlet.selected) {
-    } else if(self.fastFoodOutlet.selected) {
     } else {
-        errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
-    }
+        if(self.baconOutlet.selected) {
+            query = @"bacon";
+        } else if(self.restaurantsOutlet.selected) {
+            query = @"restaurants";
+        } else if(self.barsOutlet.selected) {
+            query = @"bars";
+        } else if(self.fastFoodOutlet.selected) {
+            query = @"fastfood";
+        } else {
+            errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
+        }
     
-    if([ errors isEqualToString:@"" ]) {
-        //TODO:Integração
-    } else {
-        [self showError:errors];
+        if([ errors isEqualToString:@"" ]) {
+            [self showResults:nil];
+            
+        } else {
+            [self showError:errors];
+        }
     }
 }
 @end

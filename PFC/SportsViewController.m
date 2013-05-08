@@ -38,7 +38,7 @@
 
 - (IBAction)footballFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -46,7 +46,7 @@
 
 - (IBAction)basketballFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -54,7 +54,7 @@
 
 - (IBAction)volleyBallFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -62,7 +62,7 @@
 
 - (IBAction)olympicFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        
+        [self showResults:nil];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }

@@ -8,6 +8,7 @@
 
 #import "ShowResultsViewController.h"
 #import "TDBadgedCell/TDBadgedCell.h"
+#import "MapViewController.h"
 
 @interface ShowResultsViewController ()
 
@@ -27,6 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          @"Vialink", @"name",
+                          @"Empresa: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
+                          @"-22.925657", @"latitude",
+                          @"-43.240798", @"longitude",
+                          nil];
+    self.results = [[NSArray alloc] initWithObjects:test, nil];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -46,6 +54,16 @@
 {
     // Return the number of sections.
     return 1;
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *description = [[self.results objectAtIndex:indexPath.row] objectForKey:@"description"];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@":" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSInteger n = [regex numberOfMatchesInString:description options:0 range:NSMakeRange(0, [description length])];
+    n = MAX(n, 4);
+    return (n+1) * 20.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -78,7 +96,7 @@
     } else {
         
         cell.textLabel.text = [[self.results objectAtIndex:indexPath.row] objectForKey:@"name"];
-        cell.textLabel.text = [[self.results objectAtIndex:indexPath.row] objectForKey:@"description"];
+        cell.detailTextLabel.text = [[self.results objectAtIndex:indexPath.row] objectForKey:@"description"];
         cell.textLabel.numberOfLines = 1;
         cell.detailTextLabel.numberOfLines = 0;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -87,6 +105,8 @@
     
     return cell;
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -131,13 +151,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if(self.results.count > 0)
+    {
+        MapViewController *map = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+        map.data = [self.results objectAtIndex:indexPath.row];
+        [self presentViewController:map animated:YES completion:nil];
+    }
 }
 
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

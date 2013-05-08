@@ -11,5 +11,6 @@
 @interface ShowResultsViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *results;
+- (IBAction)back:(id)sender;
 
 @end
