@@ -111,7 +111,14 @@
 -(void) showResults:(NSArray *)results
 {
     ShowResultsViewController *resultsView = [[ShowResultsViewController alloc] initWithNibName:@"ShowResultsViewController" bundle:nil];
-    resultsView.results = results;
+    NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          @"Vialink", @"name",
+                          @"Empresa: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
+                          @"-22.925657", @"latitude",
+                          @"-43.240798", @"longitude",
+                          nil];
+    resultsView.results = [[NSArray alloc] initWithObjects:test, test, test, nil];
+    
     [self presentViewController:resultsView animated:YES completion:nil];
 }
 

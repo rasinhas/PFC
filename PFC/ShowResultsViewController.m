@@ -28,13 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Vialink", @"name",
-                          @"Empresa: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
-                          @"-22.925657", @"latitude",
-                          @"-43.240798", @"longitude",
-                          nil];
-    self.results = [[NSArray alloc] initWithObjects:test, nil];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
