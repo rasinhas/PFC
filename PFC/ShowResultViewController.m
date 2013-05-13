@@ -20,11 +20,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.resultsTable = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStyleGrouped];
-        self.resultsTable.delegate = self;
-        self.resultsTable.dataSource = self;
-        self.resultsTable.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-        self.view = self.resultsTable;
     }
     return self;
 }
@@ -32,8 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    //FIXME: DEBUG
+    self.resultsTable.delegate = self;
+    self.resultsTable.dataSource = self;
     // Do any additional setup after loading the view from its nib.
 }
 

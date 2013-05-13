@@ -12,7 +12,8 @@
 @interface ShowResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray *results;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (strong, nonatomic) UITableView *resultsTable;
+@property (strong, nonatomic) IBOutlet UITableView *resultsTable;
 - (IBAction)back:(id)sender;
+
 
 @end
