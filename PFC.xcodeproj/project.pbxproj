@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91428FA117392D5B00C7374F /* ShowResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91428F9F17392D5B00C7374F /* ShowResultsViewController.m */; };
-		91428FA217392D5B00C7374F /* ShowResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91428FA017392D5B00C7374F /* ShowResultsViewController.xib */; };
 		91428FA617393A7600C7374F /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91428FA517393A7600C7374F /* TDBadgedCell.m */; };
 		91428FAA173A7B5700C7374F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91428FA8173A7B5700C7374F /* MapViewController.m */; };
 		91428FAB173A7B5700C7374F /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91428FA9173A7B5700C7374F /* MapViewController.xib */; };
 		91428FAD173A7C6A00C7374F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91428FAC173A7C6A00C7374F /* MapKit.framework */; };
 		91428FB0173A7CE200C7374F /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 91428FAF173A7CE200C7374F /* MapViewAnnotation.m */; };
+		91428FC3173A988C00C7374F /* ShowResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91428FC1173A988B00C7374F /* ShowResultViewController.m */; };
+		91428FC4173A988C00C7374F /* ShowResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91428FC2173A988C00C7374F /* ShowResultViewController.xib */; };
 		916162E816E63971003E0824 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 916162E716E63971003E0824 /* UIKit.framework */; };
 		916162EA16E63971003E0824 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 916162E916E63971003E0824 /* Foundation.framework */; };
 		916162EC16E63971003E0824 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 916162EB16E63971003E0824 /* CoreGraphics.framework */; };
@@ -46,9 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		91428F9E17392D5B00C7374F /* ShowResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowResultsViewController.h; sourceTree = "<group>"; };
-		91428F9F17392D5B00C7374F /* ShowResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowResultsViewController.m; sourceTree = "<group>"; };
-		91428FA017392D5B00C7374F /* ShowResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowResultsViewController.xib; sourceTree = "<group>"; };
 		91428FA417393A7600C7374F /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
 		91428FA517393A7600C7374F /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
 		91428FA7173A7B5700C7374F /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -57,6 +54,9 @@
 		91428FAC173A7C6A00C7374F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		91428FAE173A7CE200C7374F /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		91428FAF173A7CE200C7374F /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		91428FC0173A988B00C7374F /* ShowResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowResultViewController.h; sourceTree = "<group>"; };
+		91428FC1173A988B00C7374F /* ShowResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowResultViewController.m; sourceTree = "<group>"; };
+		91428FC2173A988C00C7374F /* ShowResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowResultViewController.xib; sourceTree = "<group>"; };
 		916162E416E63971003E0824 /* PFC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PFC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		916162E716E63971003E0824 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		916162E916E63971003E0824 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -173,9 +173,9 @@
 				91F3C29B172FF27900E00995 /* SearchTypeViewController.h */,
 				91F3C29C172FF27900E00995 /* SearchTypeViewController.m */,
 				91F3C29D172FF27900E00995 /* SearchTypeViewController.xib */,
-				91428F9E17392D5B00C7374F /* ShowResultsViewController.h */,
-				91428F9F17392D5B00C7374F /* ShowResultsViewController.m */,
-				91428FA017392D5B00C7374F /* ShowResultsViewController.xib */,
+				91428FC0173A988B00C7374F /* ShowResultViewController.h */,
+				91428FC1173A988B00C7374F /* ShowResultViewController.m */,
+				91428FC2173A988C00C7374F /* ShowResultViewController.xib */,
 				91428FA7173A7B5700C7374F /* MapViewController.h */,
 				91428FA8173A7B5700C7374F /* MapViewController.m */,
 				91428FA9173A7B5700C7374F /* MapViewController.xib */,
@@ -282,8 +282,8 @@
 				91F3C2A9173007AF00E00995 /* RestaurantsViewController.xib in Resources */,
 				91F3C2BF1733E35800E00995 /* SportsViewController.xib in Resources */,
 				91F3C2C41733E37100E00995 /* CultureViewController.xib in Resources */,
-				91428FA217392D5B00C7374F /* ShowResultsViewController.xib in Resources */,
 				91428FAB173A7B5700C7374F /* MapViewController.xib in Resources */,
+				91428FC4173A988C00C7374F /* ShowResultViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,10 +306,10 @@
 				91F3C2B8173297C600E00995 /* MyUIViewController.m in Sources */,
 				91F3C2BE1733E35800E00995 /* SportsViewController.m in Sources */,
 				91F3C2C31733E37100E00995 /* CultureViewController.m in Sources */,
-				91428FA117392D5B00C7374F /* ShowResultsViewController.m in Sources */,
 				91428FA617393A7600C7374F /* TDBadgedCell.m in Sources */,
 				91428FAA173A7B5700C7374F /* MapViewController.m in Sources */,
 				91428FB0173A7CE200C7374F /* MapViewAnnotation.m in Sources */,
+				91428FC3173A988C00C7374F /* ShowResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

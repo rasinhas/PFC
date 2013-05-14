@@ -8,7 +8,7 @@
 
 #import "MyUIViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ShowResultsViewController.h"
+#import "ShowResultViewController.h"
 
 @interface MyUIViewController ()
 
@@ -110,15 +110,14 @@
 
 -(void) showResults:(NSArray *)results
 {
-    ShowResultsViewController *resultsView = [[ShowResultsViewController alloc] initWithNibName:@"ShowResultsViewController" bundle:nil];
+    ShowResultViewController *resultsView = [[ShowResultViewController alloc] initWithNibName:@"ShowResultViewController" bundle:nil];
     NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:
                           @"Vialink", @"name",
-                          @"Empresa: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
+                          @"TESTE: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
                           @"-22.925657", @"latitude",
                           @"-43.240798", @"longitude",
                           nil];
     resultsView.results = [[NSArray alloc] initWithObjects:test, test, test, nil];
-    
     [self presentViewController:resultsView animated:YES completion:nil];
 }
 

@@ -1,0 +1,17 @@
+syntax: glob
+
+*.pyc
+*.swp
+.DS_Store
+
+# XCode: user data
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.perspective*
+*.xcodeproj/*.mode*
+
+# XCode: documentation
+**.docset/*
+
+# XCode: build directories
+**/build/*
+build/*
