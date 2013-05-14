@@ -9,6 +9,8 @@
 #import "MyUIViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ShowResultViewController.h"
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 @interface MyUIViewController ()
 
@@ -108,16 +110,27 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+-(NSString *) requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
+{
+    NSString *full_url = [NSString stringWithFormat:@"http://127.0.0.1:8000%@", url_name];
+    NSURL *url = [NSURL URLWithString:full_url];
+    ASIFormDataRequest *request = [ ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
+    [request setRequestMethod:@"GET"];
+    [request startSynchronous];
+    NSLog([NSString stringWithFormat:@"A %@",[request responseStatusMessage]]);
+    return [request responseString];
+}
+
+
 -(void) showResults:(NSArray *)results
 {
     ShowResultViewController *resultsView = [[ShowResultViewController alloc] initWithNibName:@"ShowResultViewController" bundle:nil];
-    NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Vialink", @"name",
-                          @"TESTE: legal\nJonis: kibe\nTipo: merda\nComida: salgadinho\na:b\nc:d\ne:f\n", @"description",
-                          @"-22.925657", @"latitude",
-                          @"-43.240798", @"longitude",
-                          nil];
-    resultsView.results = [[NSArray alloc] initWithObjects:test, test, test, nil];
+    
+    NSString *response = [self requestForUrl:@"/webservice/query/" withArgs:nil];
+    NSLog([NSString stringWithFormat:@"B %@", response]);
+    resultsView.results = nil;
     [self presentViewController:resultsView animated:YES completion:nil];
 }
 

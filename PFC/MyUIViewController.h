@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
 
-@interface MyUIViewController : UIViewController
+@interface MyUIViewController : UIViewController <ASIHTTPRequestDelegate>
 
 - (BOOL) isValid: (UITextField *) textField;
 - (void) showError:(NSString *) errorMessage;
