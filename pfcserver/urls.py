@@ -5,6 +5,9 @@ from django.conf.urls.defaults import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+  
+    url(r'^$', 'pfc.views.index', name='index'),
+    url(r'^webservice/query$', 'pfc.views.query', name='query'),
     # Examples:
     # url(r'^$', 'pfcserver.views.home', name='home'),
     # url(r'^pfcserver/', include('pfcserver.foo.urls')),
