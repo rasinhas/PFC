@@ -11,6 +11,7 @@
 #import "ShowResultViewController.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "JSON.h"
 
 @interface MyUIViewController ()
 
@@ -110,16 +111,19 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
--(NSString *) requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
+-(NSString *)requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
 {
-    NSString *full_url = [NSString stringWithFormat:@"http://127.0.0.1:8000%@", url_name];
-    NSURL *url = [NSURL URLWithString:full_url];
+    NSString *full_url = [NSString stringWithFormat:@"http://127.0.0.1:8000%@?db=%@&dataset=%@&query_dict=%@", url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation]];
+    
+    
+    NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     ASIFormDataRequest *request = [ ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];
     [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
     [request setRequestMethod:@"GET"];
+    
+    
     [request startSynchronous];
-    NSLog([NSString stringWithFormat:@"A %@",[request responseStatusMessage]]);
     return [request responseString];
 }
 
@@ -127,11 +131,16 @@
 -(void) showResults:(NSArray *)results
 {
     ShowResultViewController *resultsView = [[ShowResultViewController alloc] initWithNibName:@"ShowResultViewController" bundle:nil];
-    
-    NSString *response = [self requestForUrl:@"/webservice/query/" withArgs:nil];
-    NSLog([NSString stringWithFormat:@"B %@", response]);
-    resultsView.results = nil;
+    resultsView.results = results;    
     [self presentViewController:resultsView animated:YES completion:nil];
+}
+
+-(NSArray *) getResults:(NSDictionary *)args
+{
+    
+    NSString *response = [self requestForUrl:@"/webservice/query/" withArgs:args];
+    // Fixme : verificar se o servidor retornou erro
+    return [response JSONValue];
 }
 
 @end

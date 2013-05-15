@@ -43,7 +43,14 @@
 
 - (IBAction)policeFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];
+        NSDictionary *query = @{
+            @"db": @"infraestruturas",
+            @"dataset": @"delegacias-policiais",
+            @"query_dict":@{
+                @"neighbourhood": self.neighTextField.text,
+            },
+        };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -51,7 +58,14 @@
 
 - (IBAction)firemanFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];
+        NSDictionary *query = @{
+            @"db": @"infraestruturas",
+            @"dataset": @"corpos-bombeiros",
+            @"query_dict":@{
+                @"neighbourhood": self.neighTextField.text,
+            },
+        };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -59,7 +73,14 @@
 
 - (IBAction)hospitalFilter:(id)sender {
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];   
+        NSDictionary *query = @{
+            @"db": @"infraestruturas",
+            @"dataset": @"unidades-saude",
+            @"query_dict":@{
+                @"neighbourhood": self.neighTextField.text,
+            },
+        };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
