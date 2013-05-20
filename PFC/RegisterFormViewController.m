@@ -7,6 +7,8 @@
 //
 
 #import "RegisterFormViewController.h"
+#import "ASIHTTPRequest.h"
+#import "JSON.h"
 
 @interface RegisterFormViewController ()
 
@@ -49,9 +51,26 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Registered" message:@"The user was successfully created" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-        [alert show];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        NSString *full_url = @"http://127.0.0.1:8000/webservice/register/";
+        
+        NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        ASIFormDataRequest *request = [ ASIFormDataRequest requestWithURL:url];
+        [request setRequestMethod:@"POST"];
+        [request setDelegate:self];
+        [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
+        [request setPostValue:self.loginField.text forKey:@"username"];
+        [request setPostValue:self.passwordField.text forKey:@"password"];
+        [request setPostValue:self.emailField.text forKey:@"email"];
+        
+        [request startSynchronous];
+        if([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Registered" message:@"The user was successfully created" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+            [alert show];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"An user with this username already exists. Please choose a different one." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 

@@ -83,28 +83,37 @@
 
 - (IBAction)search:(id)sender {
     NSString *errors = @"";
-    NSString *query = @"";
+    NSString *query2 = @"";
+    
     if([self isValid:self.neighTextField] == NO){
         errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
     } else {
         if(self.baconOutlet.selected) {
-            query = @"bacon";
+            query2 = @"bacon";
         } else if(self.restaurantsOutlet.selected) {
-            query = @"restaurants";
+            query2 = @"restaurants";
         } else if(self.barsOutlet.selected) {
-            query = @"bars";
+            query2 = @"bars";
         } else if(self.fastFoodOutlet.selected) {
-            query = @"fastfood";
+            query2 = @"fastfood";
         } else {
             errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
         }
-    
-        if([ errors isEqualToString:@"" ]) {
-            [self showResults:nil];
-            
-        } else {
-            [self showError:errors];
-        }
     }
+    
+    // TODO : server filter
+    if([ errors isEqualToString:@"" ]) {
+        NSDictionary *query = @{
+                                @"db": @"visitar-rio",
+                                @"dataset": @"onde-comer",
+                                @"query_dict":@{
+                                        @"neighbourhood": self.neighTextField.text,
+                                        },
+                                };
+        [self showResults: [self getResults:query]];
+    } else {
+        [self showError:errors];
+    }
+
 }
 @end

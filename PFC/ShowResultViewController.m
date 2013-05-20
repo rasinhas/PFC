@@ -46,6 +46,7 @@
     return 1;
 }
 
+// TODO : Melhorar
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([ self.results count] == 0) {
@@ -56,7 +57,7 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@":" options:NSRegularExpressionCaseInsensitive error:nil];
     NSInteger n = [regex numberOfMatchesInString:description options:0 range:NSMakeRange(0, [description length])];
     n = MAX(n, 4);
-    return (n+1) * 20.0;
+    return (n+1) * 50.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

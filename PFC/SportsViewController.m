@@ -37,32 +37,64 @@
 }
 
 - (IBAction)footballFilter:(id)sender {
+    // TODO : server filter
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];
+        NSDictionary *query = @{
+                                @"db": @"visitar-rio",
+                                @"dataset": @"esportes",
+                                @"query_dict":@{
+                                        @"neighbourhood": self.neighTextField.text,
+                                        },
+                                };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
 }
 
 - (IBAction)basketballFilter:(id)sender {
+    // TODO : server filter
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];
+        NSDictionary *query = @{
+                                @"db": @"visitar-rio",
+                                @"dataset": @"esportes",
+                                @"query_dict":@{
+                                        @"neighbourhood": self.neighTextField.text,
+                                        },
+                                };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
 }
 
 - (IBAction)volleyBallFilter:(id)sender {
+    // TODO : server filter
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];
+        NSDictionary *query = @{
+                                @"db": @"visitar-rio",
+                                @"dataset": @"esportes",
+                                @"query_dict":@{
+                                        @"neighbourhood": self.neighTextField.text,
+                                        },
+                                };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
 }
 
 - (IBAction)olympicFilter:(id)sender {
+    // TODO : server filter
     if([self isValid:self.neighTextField]) {
-        [self showResults:nil];
+        NSDictionary *query = @{
+                                @"db": @"visitar-rio",
+                                @"dataset": @"esportes",
+                                @"query_dict":@{
+                                        @"neighbourhood": self.neighTextField.text,
+                                        },
+                                };
+        [self showResults: [self getResults:query]];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }

@@ -8,6 +8,8 @@ urlpatterns = patterns('',
   
     url(r'^$', 'pfc.views.index', name='index'),
     url(r'^webservice/query/$', 'pfc.views.query', name='query'),
+    url(r'^webservice/login/$', 'pfc.views.login', name='login'),
+    url(r'^webservice/register/$', 'pfc.views.register', name='register'),
     # Examples:
     # url(r'^$', 'pfcserver.views.home', name='home'),
     # url(r'^pfcserver/', include('pfcserver.foo.urls')),

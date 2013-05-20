@@ -28,3 +28,9 @@ class Auth(models.Model):
             obj.expires = expires
             obj.save()
         return obj
+
+class User(models.Model):
+
+	username = models.CharField(max_length=255)
+	password = models.CharField(max_length=255)
+	email = models.EmailField(max_length=255)

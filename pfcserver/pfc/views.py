@@ -2,13 +2,43 @@
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from pfc.models import User
 import json
 
 def index(request):
     return render_to_response('index.html', {})
 
-def query(request):
 
+def login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+   
+    ret = {'success': False, 'errors': ""}
+
+    q = User.objects.filter(username=username, password=password)
+
+    if len(q) == 1:
+        ret['success'] = True
+
+    return HttpResponse(json.dumps(ret), mimetype='application/json')
+
+def register(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    email = request.POST.get('email')
+
+    q = User.objects.filter(username=username)
+   
+    ret = {'success': False, 'errors': ""}
+
+    if len(q) == 0:
+        User.objects.create(username=username, password=password, email=email)
+        ret['success'] = True
+
+    return HttpResponse(json.dumps(ret), mimetype='application/json')
+
+def query(request):
 
     db = request.GET.get('db')
     dataset = request.GET.get('dataset')
@@ -24,8 +54,32 @@ def query(request):
         aux = {}
         aux['latitude'] = str(d['geoResult']['point']['lat'])
         aux['longitude'] = str(d['geoResult']['point']['lng'])
-        aux['description'] = u'teste: lalala'
+        aux['description'] = parse_description(db, dataset, d)
         aux['name'] = d['name']
         ret.append(aux)
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
+
+def parse_description(db, dataset, results):
+
+    desc = ""
+    if db == "infraestruturas":
+        address = results['geoResult']['address']
+        text = results['description']['text']
+        desc = u"Address: {0}\n{1}".format(
+            address, 
+            text, 
+        )
+    elif dataset == "onde-comer":
+        address = results['geoResult']['address']
+        price = results['characteristics']['price']
+        style = results['taxonomies'][0]['type']
+        short_text = results['description']['short_text']
+        desc = u"Type: {0}\nPrice: {1}\nAddress: {2}\nDescription: {3}".format(
+            style,
+            price,
+            address,
+            short_text,
+        )
+
+    return desc
