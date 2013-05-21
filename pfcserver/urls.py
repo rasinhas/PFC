@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^webservice/query/$', 'pfc.views.query', name='query'),
     url(r'^webservice/login/$', 'pfc.views.login', name='login'),
     url(r'^webservice/register/$', 'pfc.views.register', name='register'),
+    url(r'^webservice/edit_profile/$', 'pfc.views.edit_profile', name='edit_profile'),
     # Examples:
     # url(r'^$', 'pfcserver.views.home', name='home'),
     # url(r'^pfcserver/', include('pfcserver.foo.urls')),

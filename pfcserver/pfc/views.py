@@ -38,6 +38,25 @@ def register(request):
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
+def edit_profile(request):
+    username = request.POST.get('username')
+    new_password = request.POST.get('new_password')
+    old_password = request.POST.get('old_password')
+    email = request.POST.get('email')
+
+    q = User.objects.filter(username=username, password=old_password)
+   
+    ret = {'success': False, 'errors': ""}
+
+    if len(q) == 1:
+        u = q[0]
+        u.password = new_password
+        u.email = email
+        u.save()
+        ret['success'] = True
+
+    return HttpResponse(json.dumps(ret), mimetype='application/json')
+
 def query(request):
 
     db = request.GET.get('db')
