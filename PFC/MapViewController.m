@@ -27,10 +27,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // TODO - tentar colocar a posicao do usuário e a do local na mesma tela no mapa (arrumar distancia)
     CLLocationCoordinate2D location;
+    CLLocationCoordinate2D userLocation = [[self.mapView userLocation] coordinate];
+    CLLocationCoordinate2D centerLocation;
     location.longitude = [[self.data valueForKey:@"longitude"] doubleValue];
     location.latitude = [[self.data valueForKey:@"latitude"] doubleValue];
+    centerLocation.latitude = (location.latitude+userLocation.latitude)/2;
+    centerLocation.longitude = (location.longitude+userLocation.longitude)/2;
     MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:[self.data objectForKey:@"name"] andCoordinate:location];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location,200,200);
+    [self.mapView setRegion:region animated:YES];
     [self.mapView addAnnotation:newAnnotation];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -39,7 +46,7 @@
 {
     MKAnnotationView *annotationView = [views objectAtIndex:0];
     id <MKAnnotation> mp = [annotationView annotation];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([mp coordinate],100,100);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([mp coordinate],200,200);
     [mv setRegion:region animated:YES];
     [mv selectAnnotation:mp animated:YES];
 }
