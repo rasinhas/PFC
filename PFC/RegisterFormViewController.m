@@ -8,7 +8,7 @@
 
 #import "RegisterFormViewController.h"
 #import "ASIHTTPRequest.h"
-#import "JSON.h"
+#import "Json.h"
 
 @interface RegisterFormViewController ()
 
