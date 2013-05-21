@@ -113,7 +113,8 @@
 
 -(NSString *)requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
 {
-    NSString *full_url = [NSString stringWithFormat:@"http://127.0.0.1:8000%@?db=%@&dataset=%@&query_dict=%@", url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation]];
+    NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
+    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000%@?db=%@&dataset=%@&query_dict=%@", server, url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation]];
     
     
     NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

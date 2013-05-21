@@ -17,6 +17,5 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passText;
 @property (weak, nonatomic) IBOutlet UITextField *userText;
-@property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
 
 @end

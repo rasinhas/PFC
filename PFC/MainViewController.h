@@ -14,6 +14,7 @@
 - (IBAction)managePreferences:(id)sender;
 - (IBAction)search:(id)sender;
 - (IBAction)logout:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
 
 
 
