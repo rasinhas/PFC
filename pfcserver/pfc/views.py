@@ -50,7 +50,8 @@ def edit_profile(request):
 
     if len(q) == 1:
         u = q[0]
-        u.password = new_password
+        if new_password != "":
+            u.password = new_password
         u.email = email
         u.save()
         ret['success'] = True

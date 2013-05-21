@@ -60,7 +60,7 @@
         [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         [request setPostValue:[data stringForKey:@"username"] forKey:@"username"];
-        [request setPostValue:self.oldPassField forKey:@"old_password"];
+        [request setPostValue:self.oldPassField.text forKey:@"old_password"];
         [request setPostValue:self.passwordField.text forKey:@"new_password"];
         [request setPostValue:self.emailField.text forKey:@"email"];
         
