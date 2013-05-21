@@ -150,6 +150,7 @@
         map.data = [self.results objectAtIndex:indexPath.row];
         [self presentViewController:map animated:YES completion:nil];
     }
+    [self.resultsTable deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (IBAction)back:(id)sender {
