@@ -51,7 +51,8 @@
     }
     else
     {
-        NSString *full_url = @"http://127.0.0.1:8000/webservice/register/";
+        NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
+        NSString *full_url = [NSString stringWithFormat:@"http://%@:8000/webservice/register/", server];
         
         NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         ASIFormDataRequest *request = [ ASIFormDataRequest requestWithURL:url];

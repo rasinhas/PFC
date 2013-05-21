@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    self.greetingLabel.text = [NSString stringWithFormat:@"Welcome, %@", [data stringForKey:@"username"]];
     // Do any additional setup after loading the view from its nib.
 }
 
