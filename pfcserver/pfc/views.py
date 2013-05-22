@@ -65,6 +65,7 @@ def query(request):
     dataset = request.GET.get('dataset')
     query_string = request.GET.get('query_dict').replace("'",'"')
     query_dict = json.loads(query_string)
+    extras = json.loads(request.GET.get('extras'))
 
     from utils import request_info
     dic = request_info(db, dataset, query_dict)
@@ -72,6 +73,13 @@ def query(request):
     ret = []
     #FIXME: formatar direito a saida
     for d in dic['results']:
+
+        if 'price' in extras and d['characteristics']['price'] != extras['price']:
+            continue
+
+        if 'food_types' in extras and d['taxonomies'][0]['type'] not in extras['food_types']:
+            continue
+
         aux = {}
         aux['latitude'] = str(d['geoResult']['point']['lat'])
         aux['longitude'] = str(d['geoResult']['point']['lng'])
