@@ -83,19 +83,19 @@
 
 - (IBAction)search:(id)sender {
     NSString *errors = @"";
-    NSString *query2 = @"";
-    
+    NSMutableArray *selected = [NSMutableArray alloc];
+
     if([self isValid:self.neighTextField] == NO){
         errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
     } else {
         if(self.baconOutlet.selected) {
-            query2 = @"bacon";
+            [selected addObject:@"bacon"];
         } else if(self.restaurantsOutlet.selected) {
-            query2 = @"restaurants";
+            [selected addObject:@"restaurants"];
         } else if(self.barsOutlet.selected) {
-            query2 = @"bars";
+            [selected addObject:@"bars"];
         } else if(self.fastFoodOutlet.selected) {
-            query2 = @"fastfood";
+            [selected addObject:@"fastfood"];
         } else {
             errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
         }
@@ -108,6 +108,10 @@
                                 @"dataset": @"onde-comer",
                                 @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
+                                        },
+                                @"extras":@{
+                                        @"price": self.priceLabel.text,
+                                        @"food_types": selected,
                                         },
                                 };
         [self showResults: [self getResults:query]];

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyUIViewController.h"
 
 
-@interface ShowResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ShowResultViewController : MyUIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray *results;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UITableView *resultsTable;

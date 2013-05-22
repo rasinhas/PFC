@@ -114,7 +114,7 @@
 -(NSString *)requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
 {
     NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
-    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000%@?db=%@&dataset=%@&query_dict=%@", server, url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation]];
+    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000%@?db=%@&dataset=%@&query_dict=%@&extras=%@", server, url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation], [[args valueForKey:@"extras"] JSONRepresentation]];
     
     
     NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
