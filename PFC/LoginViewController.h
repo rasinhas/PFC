@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
 
-@interface LoginViewController : MyUIViewController <UITextFieldDelegate>
+@interface LoginViewController : MyUIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate>
 - (IBAction)login:(id)sender;
 - (IBAction)registerUser:(id)sender;
 

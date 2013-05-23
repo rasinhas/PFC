@@ -36,7 +36,7 @@
 }
 
 
-- (BOOL) authenticate
+- (IBAction)login:(id)sender
 {
     NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
     NSString *full_url = [NSString stringWithFormat:@"http://%@:8000/webservice/login/", server];
@@ -48,26 +48,31 @@
     [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
     [request setPostValue:self.userText.text forKey:@"username"];
     [request setPostValue:self.passText.text forKey:@"password"];
-        
-    [request startSynchronous];
-    return [[[[request responseString] JSONValue] valueForKey:@"success"] boolValue];
+    [request startAsynchronous];
 }
 
 
-- (IBAction)login:(id)sender
+- (void) requestFailed:(ASIHTTPRequest *)request
 {
-    //_greetingLabel.text = [NSString stringWithFormat:@"Hello %@", _userText.text];
-    //TODO: validacao
-    
-    UIViewController *main = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    if ([ self authenticate ]) {
+    [self showError:@"Network connection problem."];
+}
+
+- (void) requestFinished:(ASIHTTPRequest *)request
+{
+    if ([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
+        
+        //_greetingLabel.text = [NSString stringWithFormat:@"Hello %@", _userText.text];
+        
+        UIViewController *main = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         [data setObject:self.userText.text forKey:@"username"];
         [self presentViewController:main animated:YES completion:nil];
+        
     } else {
         [self showError: @"Invalid username and password."];
     }
 }
+
 
 - (IBAction)registerUser:(id)sender
 {
