@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
 
-@interface RegisterFormViewController : MyUIViewController <UITextFieldDelegate>
+@interface RegisterFormViewController : MyUIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *loginField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmField;
