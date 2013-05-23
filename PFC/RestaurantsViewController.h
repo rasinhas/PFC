@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "SearchTypeViewController.h"
 
 @interface RestaurantsViewController : MyUIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *baconOutlet;

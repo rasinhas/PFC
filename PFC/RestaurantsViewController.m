@@ -6,9 +6,7 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "RestaurantsViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "SearchTypeViewController.h"
+#include "RestaurantsViewController.h"
 
 @interface RestaurantsViewController ()
 

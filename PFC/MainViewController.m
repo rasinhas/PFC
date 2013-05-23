@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "EditProfileViewController.h"
-#import "SearchTypeViewController.h"
+#include "MainViewController.h"
+
 
 @interface MainViewController ()
 

@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "EditProfileViewController.h"
-#import "JSON.h"
-#import "ASIHTTPRequest.h"
+#include "EditProfileViewController.h"
+
 
 @interface EditProfileViewController ()
 

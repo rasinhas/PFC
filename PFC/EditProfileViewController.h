@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
+#import "JSON.h"
+#import "ASIHTTPRequest.h"
 
 @interface EditProfileViewController : MyUIViewController <UITextFieldDelegate>
 - (IBAction)saveProfile:(id)sender;

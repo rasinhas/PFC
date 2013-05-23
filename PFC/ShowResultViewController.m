@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "ShowResultViewController.h"
-#import "TDBadgedCell/TDBadgedCell.h"
-#import "MapViewController.h"
+#include "ShowResultViewController.h"
+
 
 @interface ShowResultViewController ()
 

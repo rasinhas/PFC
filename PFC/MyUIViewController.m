@@ -6,12 +6,7 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "MyUIViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "ShowResultViewController.h"
-#import "ASIHTTPRequest.h"
-#import "ASIFormDataRequest.h"
-#import "JSON.h"
+#include "MyUIViewController.h"
 
 @interface MyUIViewController ()
 

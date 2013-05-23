@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
+#import "UtilitiesViewController.h"
+#import "RestaurantsViewController.h"
+#import "SportsViewController.h"
 
 @interface SearchTypeViewController : MyUIViewController
 - (IBAction)utilitiesView:(id)sender;

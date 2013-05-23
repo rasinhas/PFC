@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
+#import "RegisterFormViewController.h"
+#import "MainViewController.h"
+#import "ASIHTTPRequest.h"
+#import "JSON.h"
+#import "NSString+SBJSON.h"
 
 @interface LoginViewController : MyUIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate>
 - (IBAction)login:(id)sender;

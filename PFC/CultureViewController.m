@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "CultureViewController.h"
+#include "CultureViewController.h"
 
 @interface CultureViewController ()
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
+#import "ASIHTTPRequest.h"
+#import "Json.h"
 
 @interface RegisterFormViewController : MyUIViewController <UITextFieldDelegate, ASIHTTPRequestDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *loginField;

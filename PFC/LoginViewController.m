@@ -6,12 +6,8 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "RegisterFormViewController.h"
-#import "MainViewController.h"
-#import "ASIHTTPRequest.h"
-#import "JSON.h"
-#import "NSString+SBJSON.h"
+#include "LoginViewController.h"
+
 
 @interface LoginViewController () {
     

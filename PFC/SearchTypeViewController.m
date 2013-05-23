@@ -6,10 +6,7 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "SearchTypeViewController.h"
-#import "UtilitiesViewController.h"
-#import "RestaurantsViewController.h"
-#import "SportsViewController.h"
+#include "SearchTypeViewController.h"
 
 @interface SearchTypeViewController ()
 

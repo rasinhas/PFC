@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "UtilitiesViewController.h"
+#include "UtilitiesViewController.h"
 
 @interface UtilitiesViewController ()
 

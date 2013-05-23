@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
-
+#import "TDBadgedCell/TDBadgedCell.h"
+#import "MapViewController.h"
 
 @interface ShowResultViewController : MyUIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray *results;

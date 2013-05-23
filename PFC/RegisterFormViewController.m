@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "RegisterFormViewController.h"
-#import "ASIHTTPRequest.h"
-#import "Json.h"
+#include "RegisterFormViewController.h"
+
 
 @interface RegisterFormViewController ()
 

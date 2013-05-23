@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MyUIViewController.h"
+#import "EditProfileViewController.h"
+#import "SearchTypeViewController.h"
 
 @interface MainViewController : MyUIViewController
 - (IBAction)editProfile:(id)sender;

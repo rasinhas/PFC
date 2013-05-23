@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Felipe Rasinhas. All rights reserved.
 //
 
-#import "MapViewController.h"
-#import "MapViewAnnotation.h"
+#include "MapViewController.h"
 
 @interface MapViewController ()
 
