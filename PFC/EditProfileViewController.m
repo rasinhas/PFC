@@ -41,12 +41,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)saveProfile:(id)sender {
+- (IBAction)saveProfile:(id)sender
+{
     //TODO: validacao e conexao com nosso servidor
-    if(![_passwordField.text isEqualToString: _confirmField.text])
+    if([_passwordField.text isEqualToString: @""] == YES )
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"The password confirmation and password are different. Please correct it." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-        [alert show];
+        [self showError:@"Password are required."];
+    }
+    else if([_passwordField.text isEqualToString: _confirmField.text] == NO)
+    {
+        [self showError:@"The password confirmation and password are different. Please correct it."];
     }
     else
     {
@@ -63,18 +67,25 @@
         [request setPostValue:self.oldPassField.text forKey:@"old_password"];
         [request setPostValue:self.passwordField.text forKey:@"new_password"];
         [request setPostValue:self.emailField.text forKey:@"email"];
-        
-        [request startSynchronous];
-        if([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Profile updated" message:@"The profile was successfully updated" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-            [alert show];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"The old password does not match with your current password." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-            [alert show];
-        }
+        [request startAsynchronous];
     }
+}
 
+-(void) requestFailed:(ASIHTTPRequest *)request
+{
+    [self showError:@"Network connection problem."];
+}
+
+-(void) requestFinished:(ASIHTTPRequest *)request
+{
+    if([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Registered" message:@"The user was successfully updated" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        [alert show];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self showError:@"The old password does not match."];
+    }
+    
 }
 
 - (IBAction)cancel:(id)sender {

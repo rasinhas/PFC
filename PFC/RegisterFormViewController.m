@@ -44,10 +44,13 @@
 - (IBAction)createUser:(id)sender
 {
     //TODO: validacao e conexao com nosso servidor
-    if(![_passwordField.text isEqualToString: _confirmField.text])
+    if(([_loginField.text isEqualToString: @""] == YES) || ([_passwordField.text isEqualToString: @""] == YES) )
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"The password confirmation and password are different. Please correct it." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-        [alert show];
+        [self showError:@"Login and Password are required."];
+    }
+    else if([_passwordField.text isEqualToString: _confirmField.text] == NO)
+    {
+        [self showError:@"The password confirmation and password are different. Please correct it."];
     }
     else
     {
@@ -62,17 +65,25 @@
         [request setPostValue:self.loginField.text forKey:@"username"];
         [request setPostValue:self.passwordField.text forKey:@"password"];
         [request setPostValue:self.emailField.text forKey:@"email"];
-        
-        [request startSynchronous];
-        if([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Registered" message:@"The user was successfully created" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-            [alert show];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"An user with this username already exists. Please choose a different one." delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
-            [alert show];
-        }
+        [request startAsynchronous];
     }
+}
+
+-(void) requestFailed:(ASIHTTPRequest *)request
+{
+    [self showError:@"Network connection problem."];
+}
+
+-(void) requestFinished:(ASIHTTPRequest *)request
+{
+    if([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User Registered" message:@"The user was successfully created" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+        [alert show];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self showError:@"An user with this username already exists. Please choose a different one."];
+    }
+    
 }
 
 - (IBAction)textFieldFinishedWithKeyBoard:(id)sender
