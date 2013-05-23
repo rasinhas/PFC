@@ -106,11 +106,11 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
--(NSString *)requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
+-(void) makeRequest:(NSDictionary *)args
 {
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
-    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000%@?db=%@&dataset=%@&query_dict=%@&extras=%@&uid=%d", server, url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation], [[args valueForKey:@"extras"] JSONRepresentation], [data integerForKey:@"uid"]];
+    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000/webservice/query/?db=%@&dataset=%@&query_dict=%@&extras=%@&uid=%d", server, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation], [[args valueForKey:@"extras"] JSONRepresentation], [data integerForKey:@"uid"]];
     
     
     NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -118,25 +118,19 @@
     [request setDelegate:self];
     [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
     [request setRequestMethod:@"GET"];
-    
-    [request startSynchronous];
-    return [request responseString];
+    [request startAsynchronous];
 }
 
+-(void) requestFailed:(ASIHTTPRequest *)request
+{
+    [self showError:@"Network connection problem."];
+}
 
--(void) showResults:(NSArray *)results
+-(void) requestFinished:(ASIHTTPRequest *)request
 {
     ShowResultViewController *resultsView = [[ShowResultViewController alloc] initWithNibName:@"ShowResultViewController" bundle:nil];
-    resultsView.results = results;    
+    resultsView.results = [[request responseString] JSONValue];
     [self presentViewController:resultsView animated:YES completion:nil];
-}
-
--(NSArray *) getResults:(NSDictionary *)args
-{
-    
-    NSString *response = [self requestForUrl:@"/webservice/query/" withArgs:args];
-    // Fixme : verificar se o servidor retornou erro
-    return [response JSONValue];
 }
 
 @end

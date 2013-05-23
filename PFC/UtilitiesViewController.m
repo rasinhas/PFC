@@ -51,7 +51,7 @@
             },
             @"extras": @{},
         };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -67,7 +67,7 @@
             },
             @"extras": @{},
         };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -83,7 +83,7 @@
             },
             @"extras": @{},
         };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }

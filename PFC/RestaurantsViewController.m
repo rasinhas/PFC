@@ -81,7 +81,7 @@
 
 - (IBAction)search:(id)sender {
     NSString *errors = @"";
-    NSMutableArray *selected = [NSMutableArray alloc];
+    NSMutableArray *selected = [[NSMutableArray alloc] init];
 
     if([self isValid:self.neighTextField] == NO){
         errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
@@ -112,7 +112,7 @@
                                         @"food_types": selected,
                                         },
                                 };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:errors];
     }

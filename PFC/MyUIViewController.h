@@ -18,8 +18,7 @@
 
 - (BOOL) isValid: (UITextField *) textField;
 - (void) showError:(NSString *) errorMessage;
-- (void) showResults:(NSArray *) results;
-- (NSArray *) getResults:(NSDictionary *) args;
+- (void) makeRequest:(NSDictionary *) args;
 - (void)prettify:(UIButton *)button;
 - (void)changeColor:(UIButton *)button ofIndex:(int)index;
 - (void)notImplementedError;

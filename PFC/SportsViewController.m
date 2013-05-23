@@ -46,7 +46,7 @@
                                         @"neighbourhood": self.neighTextField.text,
                                         },
                                 };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -62,7 +62,7 @@
                                         @"neighbourhood": self.neighTextField.text,
                                         },
                                 };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -78,7 +78,7 @@
                                         @"neighbourhood": self.neighTextField.text,
                                         },
                                 };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
@@ -94,7 +94,7 @@
                                         @"neighbourhood": self.neighTextField.text,
                                         },
                                 };
-        [self showResults: [self getResults:query]];
+        [self makeRequest:query];
     } else {
         [self showError:self.NeighbourhoodErrorMessage];
     }
