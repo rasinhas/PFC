@@ -21,6 +21,8 @@
 
 @implementation LoginViewController
 
+int uid;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,8 +50,9 @@
     [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
     [request setPostValue:self.userText.text forKey:@"username"];
     [request setPostValue:self.passText.text forKey:@"password"];
-        
+    
     [request startSynchronous];
+    uid = [[[[request responseString] JSONValue] valueForKey:@"uid"] integerValue];
     return [[[[request responseString] JSONValue] valueForKey:@"success"] boolValue];
 }
 
@@ -63,6 +66,7 @@
     if ([ self authenticate ]) {
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
         [data setObject:self.userText.text forKey:@"username"];
+        [data setInteger:uid forKey:@"uid"];
         [self presentViewController:main animated:YES completion:nil];
     } else {
         [self showError: @"Invalid username and password."];

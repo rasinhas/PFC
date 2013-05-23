@@ -34,3 +34,13 @@ class User(models.Model):
 	username = models.CharField(max_length=255)
 	password = models.CharField(max_length=255)
 	email = models.EmailField(max_length=255)
+
+class Query(models.Model):
+    
+    user = models.ForeignKey(User)
+
+    database = models.CharField(max_length=255)
+    dataset = models.CharField(max_length=255)
+    neighbourhood = models.CharField(max_length=255)
+    
+    date = models.DateTimeField(default=datetime.datetime.now())

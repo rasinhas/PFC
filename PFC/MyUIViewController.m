@@ -113,8 +113,9 @@
 
 -(NSString *)requestForUrl: (NSString *)url_name withArgs: (NSDictionary *)args
 {
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
-    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000%@?db=%@&dataset=%@&query_dict=%@&extras=%@", server, url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation], [[args valueForKey:@"extras"] JSONRepresentation]];
+    NSString *full_url = [NSString stringWithFormat:@"http://%@:8000%@?db=%@&dataset=%@&query_dict=%@&extras=%@&uid=%d", server, url_name, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation], [[args valueForKey:@"extras"] JSONRepresentation], [data integerForKey:@"uid"]];
     
     
     NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -122,7 +123,6 @@
     [request setDelegate:self];
     [request addRequestHeader:@"X-Requested-With" value:@"XMLHttpRequest"];
     [request setRequestMethod:@"GET"];
-    
     
     [request startSynchronous];
     return [request responseString];

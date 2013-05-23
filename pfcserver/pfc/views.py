@@ -2,7 +2,7 @@
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from pfc.models import User
+from pfc.models import User, Query
 import json
 
 def index(request):
@@ -14,12 +14,13 @@ def login(request):
     password = request.POST.get('password')
 
    
-    ret = {'success': False, 'errors': ""}
+    ret = {'success': False, 'errors': "", 'uid': 0}
 
     q = User.objects.filter(username=username, password=password)
 
     if len(q) == 1:
         ret['success'] = True
+        ret['uid'] = q[0].id
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
@@ -66,6 +67,14 @@ def query(request):
     query_string = request.GET.get('query_dict').replace("'",'"')
     query_dict = json.loads(query_string)
     extras = json.loads(request.GET.get('extras'))
+
+    user = User.objects.get(id=request.GET.get('uid'))
+    Query.objects.create(**{
+        'user': user,
+        'database': db,
+        'dataset': dataset,
+        'neighbourhood': query_dict['neighbourhood'],
+    })
 
     from utils import request_info
     dic = request_info(db, dataset, query_dict)

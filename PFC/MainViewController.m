@@ -59,7 +59,8 @@
 
 - (IBAction)logout:(id)sender {
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-    [data removeObjectForKey:@"username"]; 
+    [data removeObjectForKey:@"username"];
+    [data removeObjectForKey:@"uid"];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

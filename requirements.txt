@@ -3,3 +3,8 @@ django>=1.4
 requests>=1.2 
 mysql-python
 south
+
+#iOS
+asi-http-request
+JSON
+TDBadgedCell
