@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyUIViewController.h"
 #import "TDBadgedCell/TDBadgedCell.h"
 #import "MapViewController.h"
 
-@interface ShowResultViewController : MyUIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ShowResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 @property (strong, nonatomic) NSArray *results;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UITableView *resultsTable;
