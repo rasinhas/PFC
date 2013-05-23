@@ -45,6 +45,7 @@
                                 @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
                                         },
+                                @"extras": @{},
                                 };
         [self makeRequest:query];
     } else {
@@ -61,6 +62,7 @@
                                 @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
                                         },
+                                @"extras": @{},
                                 };
         [self makeRequest:query];
     } else {
@@ -77,6 +79,7 @@
                                 @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
                                         },
+                                @"extras": @{},
                                 };
         [self makeRequest:query];
     } else {
@@ -93,6 +96,7 @@
                                 @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
                                         },
+                                @"extras": @{},
                                 };
         [self makeRequest:query];
     } else {
