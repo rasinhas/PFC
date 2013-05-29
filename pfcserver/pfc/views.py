@@ -62,39 +62,46 @@ def edit_profile(request):
 
 def query(request):
 
-    db = request.GET.get('db')
-    dataset = request.GET.get('dataset')
-    query_string = request.GET.get('query_dict').replace("'",'"')
-    query_dict = json.loads(query_string)
-    extras = json.loads(request.GET.get('extras'))
+    args = {}
+    if 'db' in request.GET:
+        args['db'] = request.GET.get('db')
+    if 'dataset' in request.GET:
+        args['dataset'] = request.GET.get('dataset')
+    if 'query_dict' in request.GET:
+        query_string = request.GET.get('query_dict').replace("'",'"')
+        args['query_dict'] = json.loads(query_string)
+    if 'extras' in request.GET:
+        args['extras'] = json.loads(request.GET.get('extras'))
 
-    user = User.objects.get(id=request.GET.get('uid'))
-    Query.objects.create(**{
-        'user': user,
-        'database': db,
-        'dataset': dataset,
-        'neighbourhood': query_dict['neighbourhood'],
-    })
+    if 'uid' in request.GET:
+        user = User.objects.get(id=request.GET.get('uid'))
+        Query.objects.create(**{
+            'user': user,
+            'database': args['db'],
+            'dataset': args['dataset'],
+            'neighbourhood': args['query_dict']['neighbourhood'],
+        })
 
     from utils import request_info
-    dic = request_info(db, dataset, query_dict)
+    dic = request_info(**args)
 
     ret = []
     #FIXME: formatar direito a saida
-    for d in dic['results']:
+    if 'results' in dic:
+        for d in dic['results']:
 
-        if 'price' in extras and d['characteristics']['price'] != extras['price']:
-            continue
+            if 'price' in extras and d['characteristics']['price'] != extras['price']:
+                continue
 
-        if 'food_types' in extras and d['taxonomies'][0]['type'] not in extras['food_types']:
-            continue
+            if 'food_types' in extras and d['taxonomies'][0]['type'] not in extras['food_types']:
+                continue
 
-        aux = {}
-        aux['latitude'] = str(d['geoResult']['point']['lat'])
-        aux['longitude'] = str(d['geoResult']['point']['lng'])
-        aux['description'] = parse_description(db, dataset, d)
-        aux['name'] = d['name']
-        ret.append(aux)
+            aux = {}
+            aux['latitude'] = str(d['geoResult']['point']['lat'])
+            aux['longitude'] = str(d['geoResult']['point']['lng'])
+            aux['description'] = parse_description(db, dataset, d)
+            aux['name'] = d['name']
+            ret.append(aux)
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
