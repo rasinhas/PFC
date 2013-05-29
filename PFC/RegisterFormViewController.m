@@ -45,7 +45,7 @@
     //TODO: validacao e conexao com nosso servidor
     if(([_loginField.text isEqualToString: @""] == YES) || ([_passwordField.text isEqualToString: @""] == YES) )
     {
-        [self showError:@"Login and Password are required."];
+        [self showError:@"Username and Password are required."];
     }
     else if([_passwordField.text isEqualToString: _confirmField.text] == NO)
     {
