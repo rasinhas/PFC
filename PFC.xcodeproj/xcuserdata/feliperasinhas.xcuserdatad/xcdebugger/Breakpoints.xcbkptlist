@@ -13,7 +13,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "132"
          endingLineNumber = "132"
-         landmarkName = "-showResults:"
+         landmarkName = "-requestFinished:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -26,7 +26,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "127"
          endingLineNumber = "127"
-         landmarkName = "-requestForUrl:withArgs:"
+         landmarkName = "-requestFailed:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -39,7 +39,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "134"
          endingLineNumber = "134"
-         landmarkName = "-showResults:"
+         landmarkName = "-requestFinished:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "127"
          endingLineNumber = "127"
-         landmarkName = "-requestForUrl:withArgs:"
+         landmarkName = "-requestFailed:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -78,7 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "51"
          endingLineNumber = "51"
-         landmarkName = "-authenticate"
+         landmarkName = "-login:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -91,7 +91,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "51"
          endingLineNumber = "51"
-         landmarkName = "-authenticate"
+         landmarkName = "-login:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -104,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "51"
          endingLineNumber = "51"
-         landmarkName = "-authenticate"
+         landmarkName = "-login:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
