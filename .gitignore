@@ -8,6 +8,7 @@ syntax: glob
 *.xcodeproj/*.pbxuser
 *.xcodeproj/*.perspective*
 *.xcodeproj/*.mode*
+*.xcodeproj/*.xcuserdata*
 
 # XCode: documentation
 **.docset/*
