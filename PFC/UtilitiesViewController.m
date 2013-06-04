@@ -89,7 +89,4 @@
     }
 }
 
-//XXX : adicionar hoteis?
-
-
 @end
