@@ -36,72 +36,85 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)footballFilter:(id)sender {
-    // TODO : server filter
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-                                @"db": @"visitar-rio",
-                                @"dataset": @"esportes",
-                                @"query_dict":@{
-                                        @"neighbourhood": self.neighTextField.text,
-                                        },
-                                @"extras": @{},
-                                };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+- (IBAction)setValue:(id)sender {
+    int range = (int)(self.priceSlider.value+0.5);
+    self.priceSlider.value = range;
+    NSString *text;
+    switch (range) {
+        case 1:
+            text = @"$";
+            break;
+        case 2:
+            text = @"$$";
+            break;
+        case 3:
+            text = @"$$$";
+            break;
+        default:
+            break;
+    };
+    self.priceLabel.text = text;
 }
 
-- (IBAction)basketballFilter:(id)sender {
-    // TODO : server filter
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-                                @"db": @"visitar-rio",
-                                @"dataset": @"esportes",
-                                @"query_dict":@{
-                                        @"neighbourhood": self.neighTextField.text,
-                                        },
-                                @"extras": @{},
-                                };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+- (IBAction)theaterFilter:(id)sender {
+    NSDictionary *query = @{
+                            @"db": @"visitar-rio",
+                            @"dataset": @"o-que-fazer",
+                            @"query_dict":@{
+                                    @"neighbourhood": self.neighTextField.text,
+                                    },
+                            @"extras": @{
+                                        @"type": @[@"Teatro",],
+                                        @"price": self.priceLabel.text,
+                                    },
+                            };
+    [self makeRequest:query];
 }
 
-- (IBAction)volleyBallFilter:(id)sender {
-    // TODO : server filter
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-                                @"db": @"visitar-rio",
-                                @"dataset": @"esportes",
-                                @"query_dict":@{
+- (IBAction)nightFilter:(id)sender {
+    NSDictionary *query = @{
+                            @"db": @"visitar-rio",
+                            @"dataset": @"o-que-fazer",
+                            @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
-                                        },
-                                @"extras": @{},
-                                };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+                                    },
+                            @"extras": @{
+                                        @"type": @[@"Shows", @"Para Dan"],
+                                        @"price": self.priceLabel.text,
+                                    },
+                            };
+    [self makeRequest:query];
 }
 
-- (IBAction)olympicFilter:(id)sender {
-    // TODO : server filter
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-                                @"db": @"visitar-rio",
-                                @"dataset": @"esportes",
-                                @"query_dict":@{
+- (IBAction)artsFilter:(id)sender {
+    NSDictionary *query = @{
+                            @"db": @"visitar-rio",
+                            @"dataset": @"o-que-fazer",
+                            @"query_dict":@{
                                         @"neighbourhood": self.neighTextField.text,
-                                        },
-                                @"extras": @{},
-                                };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+                                    },
+                            @"extras": @{
+                                        @"type": @[ @"Artes"],
+                                        @"price": self.priceLabel.text,
+                                    },
+                            };
+    [self makeRequest:query];
+}
+
+- (IBAction)freeTimeFilter:(id)sender {
+    NSDictionary *query = @{
+                            @"db": @"visitar-rio",
+                            @"dataset": @"o-que-fazer",
+                            @"query_dict":@{
+                                    @"neighbourhood": self.neighTextField.text,
+                                    },
+                            @"extras": @{
+                                        @"type": @[@"Rio com", @"Compras", @"Culturais"],
+                                        @"remove_type": @[@"Artes", @"Teatro"],
+                                        @"price": self.priceLabel.text,
+                                    },
+                            };
+    [self makeRequest:query];
 }
 
 

@@ -112,7 +112,6 @@
     NSString *server = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"Server IP"];
     NSString *full_url = [NSString stringWithFormat:@"http://%@:8000/webservice/query/?db=%@&dataset=%@&query_dict=%@&extras=%@&uid=%d", server, [args valueForKey:@"db"], [args valueForKey:@"dataset"], [[args valueForKey:@"query_dict"] JSONRepresentation], [[args valueForKey:@"extras"] JSONRepresentation], [data integerForKey:@"uid"]];
     
-    
     NSURL *url = [NSURL URLWithString:[full_url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     ASIFormDataRequest *request = [ ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];

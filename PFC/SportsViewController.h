@@ -10,11 +10,14 @@
 #import "MyUIViewController.h"
 
 @interface SportsViewController : MyUIViewController <UITextFieldDelegate>
-- (IBAction)footballFilter:(id)sender;
-- (IBAction)basketballFilter:(id)sender;
-- (IBAction)volleyBallFilter:(id)sender;
-- (IBAction)olympicFilter:(id)sender;
+- (IBAction)theaterFilter:(id)sender;
+- (IBAction)nightFilter:(id)sender;
+- (IBAction)artsFilter:(id)sender;
+- (IBAction)freeTimeFilter:(id)sender;
 - (IBAction)back:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *neighTextField;
+@property (weak, nonatomic) IBOutlet UISlider *priceSlider;
+- (IBAction)setValue:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end

@@ -6,7 +6,7 @@ import requests
 import urllib
 import json
 
-def request_info(db="infraestruturas",dataset="delegacias-policiais",query_dict={"neighbourhood":"barra da tijuca"},response_format="json"):
+def request_info(db="infraestruturas",dataset="delegacias-policiais",query_dict={}, response_format="json"):
     '''request_info(String, String, dict, String)
         This method performs a request to the Rio DataMine API and returns a dict of the results
         The first parameter is the database where the query will be applied on;

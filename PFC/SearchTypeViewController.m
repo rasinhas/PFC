@@ -51,7 +51,8 @@
 }
 
 - (IBAction)cultureView:(id)sender {
-    [self notImplementedError];
+    UIViewController *culture = [[CultureViewController alloc] initWithNibName:@"CultureViewController" bundle:nil];
+    [self presentViewController: culture animated:YES completion:nil];
 }
 
 - (IBAction)returnMenu:(id)sender {

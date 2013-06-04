@@ -70,8 +70,6 @@ def query(request):
     if 'query_dict' in request.GET:
         query_string = request.GET.get('query_dict').replace("'",'"')
         args['query_dict'] = json.loads(query_string)
-    if 'extras' in request.GET:
-        args['extras'] = json.loads(request.GET.get('extras'))
 
     if 'uid' in request.GET:
         user = User.objects.get(id=request.GET.get('uid'))
@@ -82,30 +80,67 @@ def query(request):
             'neighbourhood': args['query_dict']['neighbourhood'],
         })
 
+    keys = args['query_dict'].keys()
+    for key in keys:
+        if not args['query_dict'][key]:
+            del args['query_dict'][key]
+    
+
     from utils import request_info
     dic = request_info(**args)
+
+    if 'extras' in request.GET:
+        args['extras'] = json.loads(request.GET.get('extras'))
 
     ret = []
     #FIXME: formatar direito a saida
     if 'results' in dic:
         for d in dic['results']:
+            
+            if 'extras' in args:
+                if 'price' in args['extras'] and d['characteristics']['price'] != args['extras']['price']:
+                    continue
 
-            if 'price' in extras and d['characteristics']['price'] != extras['price']:
-                continue
+                if 'food_types' in args['extras'] and d['taxonomies'][0]['type'] not in args['extras']['food_types']:
+                    continue
 
-            if 'food_types' in extras and d['taxonomies'][0]['type'] not in extras['food_types']:
-                continue
+                if 'type' in args['extras']:
+                    valid = 0
+                    if (not 'taxonomies' in d) or (not 'type' in d['taxonomies'][0]):
+                        continue
+                    for t in args['extras']['type']:
+                        if t in d['taxonomies'][0]['type']:
+                            valid = 1
+                    if not valid:
+                        continue
+                
+                if 'remove_type' in args['extras']:
+                    if (not 'taxonomies' in d) or (not 'type' in d['taxonomies'][0]):
+                        continue
+                    for t in args['extras']['remove_type']:
+                        if t in d['taxonomies'][0]['type']:
+                            continue
 
             aux = {}
-            aux['latitude'] = str(d['geoResult']['point']['lat'])
-            aux['longitude'] = str(d['geoResult']['point']['lng'])
-            aux['description'] = parse_description(db, dataset, d)
+            if 'geoResult' in d:
+                aux['latitude'] = str(d['geoResult']['point']['lat'])
+                aux['longitude'] = str(d['geoResult']['point']['lng'])
+            params = {}
+            params['results'] = d
+            if 'db' in args:
+                params['db'] = args['db']
+            if 'dataset' in args:
+                params['dataset'] = args['dataset']
+            aux['description'] = parse_description(**params)
+            if not aux['description']:
+                print d
+                continue
             aux['name'] = d['name']
             ret.append(aux)
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
-def parse_description(db, dataset, results):
+def parse_description(results, db='infraestruturas', dataset='delegacias-policiais'):
 
     desc = ""
     if db == "infraestruturas":
@@ -120,6 +155,19 @@ def parse_description(db, dataset, results):
         price = results['characteristics']['price']
         style = results['taxonomies'][0]['type']
         short_text = results['description']['short_text']
+        desc = u"Type: {0}\nPrice: {1}\nAddress: {2}\nDescription: {3}".format(
+            style,
+            price,
+            address,
+            short_text,
+        )
+    elif dataset == "o-que-fazer":
+        address = results['geoResult']['address']
+        style = results['taxonomies'][0]['type']
+        price = results['characteristics']['price']
+        short_text = ""
+        if 'description' in results and 'short_text' in results['description']:
+            short_text = results['description']['short_text']
         desc = u"Type: {0}\nPrice: {1}\nAddress: {2}\nDescription: {3}".format(
             style,
             price,

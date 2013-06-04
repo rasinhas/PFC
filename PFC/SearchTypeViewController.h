@@ -11,6 +11,7 @@
 #import "UtilitiesViewController.h"
 #import "RestaurantsViewController.h"
 #import "SportsViewController.h"
+#import "CultureViewController.h"
 
 @interface SearchTypeViewController : MyUIViewController
 - (IBAction)utilitiesView:(id)sender;

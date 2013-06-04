@@ -10,5 +10,7 @@
 #import "MyUIViewController.h"
 
 @interface CultureViewController : MyUIViewController <UITextFieldDelegate>
+- (IBAction)back:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *neighTextField;
 
 @end

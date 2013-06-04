@@ -91,7 +91,7 @@
         cell = [[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     if ([self.results count] == 0) {
-        cell.textLabel.text = @"Error";
+        cell.textLabel.text = @"No results";
         cell.detailTextLabel.text = @"No results found for your search";
     } else {
         cell.textLabel.text = [[self.results objectAtIndex:indexPath.row] objectForKey:@"name"];
