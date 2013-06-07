@@ -44,3 +44,28 @@ class Query(models.Model):
     neighbourhood = models.CharField(max_length=255)
     
     date = models.DateTimeField(default=datetime.datetime.now())
+
+class Preference(models.Model):
+    
+    user = models.ForeignKey(User)
+    
+    _valid_types = [
+        ('global', 'global'),
+        ('restaurant', 'restaurant'),
+        ('utility', 'utility'),
+        ('inn', 'inn'),
+        ('entertainment', 'entertainment'),
+    ]
+    type = models.CharField(max_length=255, choices=_valid_types)
+    
+    subtype = models.CharField(max_length=255)
+    
+    value = models.CharField(max_length=255)
+
+    def to_json(self):
+        return {
+            'uid': self.user.id,
+            'type': self.type,
+            'subtype': self.subtype,
+            'value': self.value,
+        }
