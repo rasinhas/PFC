@@ -51,7 +51,7 @@ class Preference(models.Model):
     
     VALID_TYPES = [
         ('global', 'global'),
-        ('restaurant', 'restaurant'),
+        ('restaurants', 'restaurants'),
         ('utility', 'utility'),
         ('inn', 'inn'),
         ('entertainment', 'entertainment'),
@@ -62,7 +62,7 @@ class Preference(models.Model):
         ('neighbourhood', 'neighbourhood'),
         ('price', 'price'),
         ('inn_type', 'inn_type'),
-        ('food_type', 'food_type'),
+        ('restaurant_type', 'restaurant_type'),
         ('entertainment_type', 'entertainment_type'),
     ]
     subtype = models.CharField(max_length=255, choices=VALID_SUBTYPES)

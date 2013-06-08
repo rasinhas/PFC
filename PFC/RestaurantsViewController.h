@@ -11,11 +11,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface RestaurantsViewController : MyUIViewController <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *baconOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *fastFoodOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *restaurantsOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *barsOutlet;
-- (IBAction)changeBacon:(id)sender;
 - (IBAction)changeFastFood:(id)sender;
 - (IBAction)changeRestaurants:(id)sender;
 - (IBAction)changeBars:(id)sender;
