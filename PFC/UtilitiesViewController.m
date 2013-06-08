@@ -49,51 +49,40 @@
 
 
 - (IBAction)policeFilter:(id)sender {
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-            @"db": @"infraestruturas",
-            @"dataset": @"delegacias-policiais",
-            @"query_dict":@{
-                @"neighbourhood": self.neighTextField.text,
-            },
-            @"extras": @{},
-        };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+    NSDictionary *query = @{
+        @"db": @"infraestruturas",
+        @"dataset": @"delegacias-policiais",
+        @"query_dict":@{
+            @"neighbourhood": self.neighTextField.text,
+        },
+        @"extras": @{},
+    };
+    [self makeRequest:query];
 }
 
 - (IBAction)firemanFilter:(id)sender {
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-            @"db": @"infraestruturas",
-            @"dataset": @"corpos-bombeiros",
-            @"query_dict":@{
-                @"neighbourhood": self.neighTextField.text,
-            },
-            @"extras": @{},
-        };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+    NSDictionary *query = @{
+        @"db": @"infraestruturas",
+        @"dataset": @"corpos-bombeiros",
+        @"query_dict":@{
+            @"neighbourhood": self.neighTextField.text,
+        },
+        @"extras": @{},
+    };
+    [self makeRequest:query];
+
 }
 
 - (IBAction)hospitalFilter:(id)sender {
-    if([self isValid:self.neighTextField]) {
-        NSDictionary *query = @{
-            @"db": @"infraestruturas",
-            @"dataset": @"unidades-saude",
-            @"query_dict":@{
-                @"neighbourhood": self.neighTextField.text,
-            },
-            @"extras": @{},
-        };
-        [self makeRequest:query];
-    } else {
-        [self showError:self.NeighbourhoodErrorMessage];
-    }
+    NSDictionary *query = @{
+        @"db": @"infraestruturas",
+        @"dataset": @"unidades-saude",
+        @"query_dict":@{
+            @"neighbourhood": self.neighTextField.text,
+        },
+        @"extras": @{},
+    };
+    [self makeRequest:query];
 }
 
 @end
