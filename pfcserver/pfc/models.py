@@ -49,23 +49,22 @@ class Preference(models.Model):
     
     user = models.ForeignKey(User)
     
-    _valid_types = [
+    VALID_TYPES = [
         ('global', 'global'),
         ('restaurant', 'restaurant'),
         ('utility', 'utility'),
         ('inn', 'inn'),
         ('entertainment', 'entertainment'),
     ]
-    type = models.CharField(max_length=255, choices=_valid_types)
-    
-    subtype = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, choices=VALID_TYPES)
+
+    VALID_SUBTYPES = [
+        ('neighbourhood', 'neighbourhood'),
+        ('price', 'price'),
+        ('inn_type', 'inn_type'),
+        ('food_type', 'food_type'),
+        ('entertainment_type', 'entertainment_type'),
+    ]
+    subtype = models.CharField(max_length=255, choices=VALID_SUBTYPES)
     
     value = models.CharField(max_length=255)
-
-    def to_json(self):
-        return {
-            'uid': self.user.id,
-            'type': self.type,
-            'subtype': self.subtype,
-            'value': self.value,
-        }

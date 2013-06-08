@@ -19,9 +19,12 @@ def _login(username, password):
         ret['uid'] = q[0].id
         ret['preferences'] = {}
         user_preferences = Preference.objects.filter(user=q[0])
-        for type, type in Preference._valid_types:
-            ret['preferences'][type] = [ p.to_json() for p in user_preferences.filter(type=type) ]
-
+        for type, type in Preference.VALID_TYPES:
+            ret['preferences'][type] = {}
+            type_preferences = user_preferences.filter(type=type)
+            for subtype, subtype in Preference.VALID_SUBTYPES:
+                p = type_preferences.filter(subtype=subtype)
+                ret['preferences'][type][subtype] = p[0].value if p else ""
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
 def login(request):

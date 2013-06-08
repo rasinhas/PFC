@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-    }
+    } 
     return self;
 }
 
@@ -27,6 +27,13 @@
 {
     [super viewDidLoad];
     [self.neighTextField setDelegate:self];
+    NSDictionary *preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
+    //NSLog([preferences JSONRepresentation]);
+    [self.neighTextField setText: [[preferences valueForKey:@"global"] valueForKey:@"neighbourhood"]];
+    NSString *v = [[NSString alloc] initWithString: [[preferences valueForKey:@"utility"] valueForKey:@"neighbourhood"]];
+    if ([v isEqualToString:@""] == NO) {
+        [self.neighTextField setText:v];
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
