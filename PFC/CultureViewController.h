@@ -12,5 +12,13 @@
 @interface CultureViewController : MyUIViewController <UITextFieldDelegate>
 - (IBAction)back:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *neighTextField;
+@property (weak, nonatomic) IBOutlet UISlider *priceSlider;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+- (IBAction)setValue:(id)sender;
+- (IBAction)hotelFilter:(id)sender;
+- (IBAction)hostelFilter:(id)sender;
+- (IBAction)bebFilter:(id)sender;
+- (IBAction)innFilter:(id)sender;
+
 
 @end
