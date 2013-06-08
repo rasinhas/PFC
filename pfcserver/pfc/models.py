@@ -18,15 +18,18 @@ class Auth(models.Model):
             #get the token in the database
             obj = q[cnt-1] 
         else:
-            #request to the server
+            # request to the server
             auth_url = "http://api.riodatamine.com.br/rest/request-token?app-id={0}&app-secret={1}".format(settings.APP_ID, settings.APP_SECRET)
-            request = requests.get(auth_url)
-            token = request.headers["x-access-token"]
-            expires = datetime.datetime.fromtimestamp(float(request.headers["x-access-token-expires"]))
-            obj = cls()
-            obj.token = token
-            obj.expires = expires
-            obj.save()
+            try:
+                request = requests.get(auth_url, timeout=1)
+                token = request.headers["x-access-token"]
+                expires = datetime.datetime.fromtimestamp(float(request.headers["x-access-token-expires"]))
+                obj = cls()
+                obj.token = token
+                obj.expires = expires
+                obj.save()
+            except requests.Timeout:
+                return q[cnt-1]
         return obj
 
 class User(models.Model):
