@@ -2,18 +2,14 @@
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from pfc.models import User, Query
+from pfc.models import User, Query, Preference
 import json
 
 def index(request):
     return render_to_response('index.html', {})
 
 
-def login(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-
-   
+def _login(username, password):
     ret = {'success': False, 'errors': "", 'uid': 0}
 
     q = User.objects.filter(username=username, password=password)
@@ -21,8 +17,21 @@ def login(request):
     if len(q) == 1:
         ret['success'] = True
         ret['uid'] = q[0].id
-
+        ret['preferences'] = {}
+        user_preferences = Preference.objects.filter(user=q[0])
+        for type, type in Preference.VALID_TYPES:
+            ret['preferences'][type] = {}
+            type_preferences = user_preferences.filter(type=type)
+            for subtype, subtype in Preference.VALID_SUBTYPES:
+                p = type_preferences.filter(subtype=subtype)
+                ret['preferences'][type][subtype] = p[0].value if p else ""
     return HttpResponse(json.dumps(ret), mimetype='application/json')
+
+def login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    return _login(username, password)
+
 
 def register(request):
     username = request.POST.get('username')

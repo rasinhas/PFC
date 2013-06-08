@@ -26,11 +26,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self prettify:self.baconOutlet];
     [self prettify:self.fastFoodOutlet];
     [self prettify:self.restaurantsOutlet];
     [self prettify:self.barsOutlet];
     [self.neighTextField setDelegate:self];
+    
+    NSDictionary *preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
+    NSDictionary *global_preferences = [preferences valueForKey:@"global"];
+    NSDictionary *restaurant_preferences = [preferences valueForKey:@"restaurants"];
+    
+    [self.neighTextField setText: [global_preferences valueForKey:@"neighbourhood"]];
+    NSString *v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"neighbourhood"]];
+    if ([v isEqualToString:@""] == NO) {
+        [self.neighTextField setText:v];
+    }
+    v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"price"]];
+    if ([v isEqualToString:@""] == YES) {
+        v = [global_preferences valueForKey:@"price"];
+        if ([v isEqualToString:@""] == YES) {
+            v = @"$";
+        }
+    }
+    self.priceLabel.text = v;
+    self.priceSlider.value = v.length;
+    
+    v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"restaurant_type"]];
+    if ([v isEqualToString:@"fastFood"]) {
+        [self changeFastFood:self];
+    }
+    if ([v isEqualToString:@"restautants"]) {
+        [self changeRestaurants:self];
+    }
+    if ([v isEqualToString:@"bars"]) {
+        [self changeBars:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,22 +69,18 @@
 }
 
 
-
-- (IBAction)changeBacon:(id)sender {
-    [self changeColor:self.baconOutlet ofIndex:0];
-}
-
 - (IBAction)changeFastFood:(id)sender {
-    [self changeColor:self.fastFoodOutlet ofIndex:1];
+    [self changeColor:self.fastFoodOutlet];
 }
 
 - (IBAction)changeRestaurants:(id)sender {
-    [self changeColor:self.restaurantsOutlet ofIndex:2];
+    [self changeColor:self.restaurantsOutlet];
 }
 
 - (IBAction)changeBars:(id)sender {
-    [self changeColor:self.barsOutlet ofIndex:3];
+    [self changeColor:self.barsOutlet];
 }
+
 - (IBAction)setValue:(id)sender {
     int range = (int)(self.priceSlider.value+0.5);
     self.priceSlider.value = range;
@@ -86,9 +111,7 @@
     if([self isValid:self.neighTextField] == NO){
         errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
     } else {
-        if(self.baconOutlet.selected) {
-            [selected addObject:@"bacon"];
-        } else if(self.restaurantsOutlet.selected) {
+        if(self.restaurantsOutlet.selected) {
             [selected addObject:@"restaurants"];
         } else if(self.barsOutlet.selected) {
             [selected addObject:@"bars"];

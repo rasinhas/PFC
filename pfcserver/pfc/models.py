@@ -18,15 +18,18 @@ class Auth(models.Model):
             #get the token in the database
             obj = q[cnt-1] 
         else:
-            #request to the server
+            # request to the server
             auth_url = "http://api.riodatamine.com.br/rest/request-token?app-id={0}&app-secret={1}".format(settings.APP_ID, settings.APP_SECRET)
-            request = requests.get(auth_url)
-            token = request.headers["x-access-token"]
-            expires = datetime.datetime.fromtimestamp(float(request.headers["x-access-token-expires"]))
-            obj = cls()
-            obj.token = token
-            obj.expires = expires
-            obj.save()
+            try:
+                request = requests.get(auth_url, timeout=1)
+                token = request.headers["x-access-token"]
+                expires = datetime.datetime.fromtimestamp(float(request.headers["x-access-token-expires"]))
+                obj = cls()
+                obj.token = token
+                obj.expires = expires
+                obj.save()
+            except requests.Timeout:
+                return q[cnt-1]
         return obj
 
 class User(models.Model):
@@ -44,3 +47,27 @@ class Query(models.Model):
     neighbourhood = models.CharField(max_length=255)
     
     date = models.DateTimeField(default=datetime.datetime.now())
+
+class Preference(models.Model):
+    
+    user = models.ForeignKey(User)
+    
+    VALID_TYPES = [
+        ('global', 'global'),
+        ('restaurants', 'restaurants'),
+        ('utility', 'utility'),
+        ('inn', 'inn'),
+        ('entertainment', 'entertainment'),
+    ]
+    type = models.CharField(max_length=255, choices=VALID_TYPES)
+
+    VALID_SUBTYPES = [
+        ('neighbourhood', 'neighbourhood'),
+        ('price', 'price'),
+        ('inn_type', 'inn_type'),
+        ('restaurant_type', 'restaurant_type'),
+        ('entertainment_type', 'entertainment_type'),
+    ]
+    subtype = models.CharField(max_length=255, choices=VALID_SUBTYPES)
+    
+    value = models.CharField(max_length=255)

@@ -57,13 +57,14 @@
 {
     if ([[[[request responseString] JSONValue] valueForKey:@"success"] boolValue] == YES) {
         
-        //_greetingLabel.text = [NSString stringWithFormat:@"Hello %@", _userText.text];
-        
         UIViewController *main = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
         NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-        int uid = [[[[request responseString] JSONValue] valueForKey:@"uid"] integerValue];
+        NSDictionary *response = [[request responseString] JSONValue];
+        int uid = [[ response valueForKey:@"uid"] integerValue];
+        NSDictionary *preferences = [response valueForKey:@"preferences"];
         [data setObject:self.userText.text forKey:@"username"];
         [data setInteger:uid forKey:@"uid"];
+        [data setObject:preferences forKey:@"preferences"];
         [self presentViewController:main animated:YES completion:nil];
         
     } else {

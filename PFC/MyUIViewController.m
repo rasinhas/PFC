@@ -59,7 +59,7 @@
     [alert show];
 }
 
-- (void)changeColor:(UIButton *)button ofIndex:(int)index
+- (void)changeColor:(UIButton *)button
 {
     button.selected = 1-button.selected;
     if (button.selected) {
