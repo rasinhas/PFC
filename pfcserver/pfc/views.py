@@ -2,7 +2,7 @@
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from pfc.models import User, Query, Preference
+from pfc.models import User, Query
 import json
 
 def index(request):
@@ -15,16 +15,20 @@ def _login(username, password):
     q = User.objects.filter(username=username, password=password)
 
     if len(q) == 1:
+        user = q[0]
         ret['success'] = True
-        ret['uid'] = q[0].id
+        ret['uid'] = user.id
+        preferences = {
+            'utility': ['neighbourhood',],
+            'restaurant': ['neighbourhood', 'price', 'type',],
+            'inn': ['neighbourhood', 'price',],
+            'entertainment': ['neighbourhood', 'price',],
+        }
         ret['preferences'] = {}
-        user_preferences = Preference.objects.filter(user=q[0])
-        for type, type in Preference.VALID_TYPES:
+        for type, subtype_list in preferences.items():
             ret['preferences'][type] = {}
-            type_preferences = user_preferences.filter(type=type)
-            for subtype, subtype in Preference.VALID_SUBTYPES:
-                p = type_preferences.filter(subtype=subtype)
-                ret['preferences'][type][subtype] = p[0].value if p else ""
+            for subtype in subtype_list:
+                ret['preferences'][type][subtype] = getattr(user, 'preference_{0}_{1}'.format(type, subtype))
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
 def login(request):
@@ -69,6 +73,41 @@ def edit_profile(request):
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
+def check_filters(obj, filters):
+
+    if 'price' in filters and obj['characteristics']['price'] != filters['price']:
+        return 0
+
+    if 'food_types' in filters:
+        valid = 0
+        if (not 'taxonomies' in obj) or (not 'type' in obj['taxonomies'][0]):
+            return 0
+        for t in filters['food_types']:
+            if t in obj['taxonomies'][0]['type']:
+                valid=1
+        if not valid:
+            return 0
+
+    if 'type' in filters:
+        valid = 0
+        if (not 'taxonomies' in obj) or (not 'type' in obj['taxonomies'][0]):
+            return 0
+        for t in filters['type']:
+            if t in obj['taxonomies'][0]['type']:
+                valid = 1
+        if not valid:
+            return 0
+    
+    if 'remove_type' in filters:
+        if (not 'taxonomies' in obj) or (not 'type' in obj['taxonomies'][0]):
+            return 0
+        for t in filters['remove_type']:
+            if t in obj['taxonomies'][0]['type']:
+                return 0
+
+    return 1
+    
+
 def query(request):
 
     args = {}
@@ -89,46 +128,27 @@ def query(request):
             'neighbourhood': args['query_dict']['neighbourhood'],
         })
 
-    keys = args['query_dict'].keys()
-    for key in keys:
-        if not args['query_dict'][key]:
-            del args['query_dict'][key]
+    if 'query_dict' in args:
+        keys = args['query_dict'].keys()
+        for key in keys:
+            if not args['query_dict'][key]:
+                del args['query_dict'][key]
     
-
     from utils import request_info
     dic = request_info(**args)
 
     if 'extras' in request.GET:
         args['extras'] = json.loads(request.GET.get('extras'))
-
+    
     ret = []
     #FIXME: formatar direito a saida
     if 'results' in dic:
         for d in dic['results']:
             
             if 'extras' in args:
-                if 'price' in args['extras'] and d['characteristics']['price'] != args['extras']['price']:
+                if not check_filters(d, args['extras']):
                     continue
 
-                if 'food_types' in args['extras'] and d['taxonomies'][0]['type'] not in args['extras']['food_types']:
-                    continue
-
-                if 'type' in args['extras']:
-                    valid = 0
-                    if (not 'taxonomies' in d) or (not 'type' in d['taxonomies'][0]):
-                        continue
-                    for t in args['extras']['type']:
-                        if t in d['taxonomies'][0]['type']:
-                            valid = 1
-                    if not valid:
-                        continue
-                
-                if 'remove_type' in args['extras']:
-                    if (not 'taxonomies' in d) or (not 'type' in d['taxonomies'][0]):
-                        continue
-                    for t in args['extras']['remove_type']:
-                        if t in d['taxonomies'][0]['type']:
-                            continue
 
             aux = {}
             if 'geoResult' in d:
