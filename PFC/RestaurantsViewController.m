@@ -31,30 +31,17 @@
     [self prettify:self.barsOutlet];
     [self.neighTextField setDelegate:self];
     
-    NSDictionary *preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
-    NSDictionary *global_preferences = [preferences valueForKey:@"global"];
-    NSDictionary *restaurant_preferences = [preferences valueForKey:@"restaurants"];
+    NSDictionary *restaurant_preferences = [[[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"] valueForKey:@"restaurant"];
     
-    [self.neighTextField setText: [global_preferences valueForKey:@"neighbourhood"]];
-    NSString *v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"neighbourhood"]];
-    if ([v isEqualToString:@""] == NO) {
-        [self.neighTextField setText:v];
-    }
-    v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"price"]];
-    if ([v isEqualToString:@""] == YES) {
-        v = [global_preferences valueForKey:@"price"];
-        if ([v isEqualToString:@""] == YES) {
-            v = @"$";
-        }
-    }
-    self.priceLabel.text = v;
-    self.priceSlider.value = v.length;
+    [self.neighTextField setText: [restaurant_preferences valueForKey:@"neighbourhood"]];
+    self.priceLabel.text = [restaurant_preferences valueForKey:@"price"];
+    self.priceSlider.value = self.priceLabel.text.length;
     
-    v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"restaurant_type"]];
-    if ([v isEqualToString:@"fastFood"]) {
+    NSString *v = [[NSString alloc] initWithString: [restaurant_preferences valueForKey:@"type"]];
+    if ([v isEqualToString:@"fastfood"]) {
         [self changeFastFood:self];
     }
-    if ([v isEqualToString:@"restautants"]) {
+    if ([v isEqualToString:@"restaurants"]) {
         [self changeRestaurants:self];
     }
     if ([v isEqualToString:@"bars"]) {
@@ -108,18 +95,15 @@
     NSString *errors = @"";
     NSMutableArray *selected = [[NSMutableArray alloc] init];
 
-    if([self isValid:self.neighTextField] == NO){
-        errors = [NSString stringWithFormat:@"%@\n%@", errors, self.NeighbourhoodErrorMessage];
+    if(self.restaurantsOutlet.selected) {
+        [selected addObject:@"Restaurantes"];
+    } else if(self.barsOutlet.selected) {
+        [selected addObject:@"Bares"];
+    } else if(self.fastFoodOutlet.selected) {
+        [selected addObject:@"Lanchonetes"];
+        [selected addObject:@"Confeitarias"];
     } else {
-        if(self.restaurantsOutlet.selected) {
-            [selected addObject:@"restaurants"];
-        } else if(self.barsOutlet.selected) {
-            [selected addObject:@"bars"];
-        } else if(self.fastFoodOutlet.selected) {
-            [selected addObject:@"fastfood"];
-        } else {
-            errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
-        }
+        errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
     }
     
     // TODO : server filter

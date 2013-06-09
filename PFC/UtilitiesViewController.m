@@ -28,11 +28,8 @@
     [super viewDidLoad];
     [self.neighTextField setDelegate:self];
     NSDictionary *preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
-    [self.neighTextField setText: [[preferences valueForKey:@"global"] valueForKey:@"neighbourhood"]];
-    NSString *v = [[NSString alloc] initWithString: [[preferences valueForKey:@"utility"] valueForKey:@"neighbourhood"]];
-    if ([v isEqualToString:@""] == NO) {
-        [self.neighTextField setText:v];
-    }
+    [self.neighTextField setText: [[preferences valueForKey:@"utility"] valueForKey:@"neighbourhood"]];
+
     // Do any additional setup after loading the view from its nib.
 }
 

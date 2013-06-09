@@ -26,7 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        [self.neighTextField setDelegate:self];
+    [self.neighTextField setDelegate:self];
+    
+    NSDictionary *entertainment_preferences = [[[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"] valueForKey:@"entertainment"];
+    
+    [self.neighTextField setText: [entertainment_preferences valueForKey:@"neighbourhood"]];
+    self.priceLabel.text = [entertainment_preferences valueForKey:@"price"];
+    self.priceSlider.value = self.priceLabel.text.length;
+
     // Do any additional setup after loading the view from its nib.
 }
 

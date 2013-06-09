@@ -34,9 +34,22 @@ class Auth(models.Model):
 
 class User(models.Model):
 
-	username = models.CharField(max_length=255)
-	password = models.CharField(max_length=255)
-	email = models.EmailField(max_length=255)
+    username = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    
+    preference_utility_neighbourhood = models.CharField(max_length=255, default="")
+    
+    preference_restaurant_neighbourhood = models.CharField(max_length=255, default="")
+    preference_restaurant_price = models.CharField(max_length=255, default="$")
+    preference_restaurant_type = models.CharField(max_length=255, default="")
+    
+    preference_inn_neighbourhood = models.CharField(max_length=255, default="")
+    preference_inn_price = models.CharField(max_length=255, default="$")
+    
+    preference_entertainment_neighbourhood = models.CharField(max_length=255, default="")
+    preference_entertainment_price = models.CharField(max_length=255, default="$")
+
 
 class Query(models.Model):
     
@@ -47,27 +60,3 @@ class Query(models.Model):
     neighbourhood = models.CharField(max_length=255)
     
     date = models.DateTimeField(default=datetime.datetime.now())
-
-class Preference(models.Model):
-    
-    user = models.ForeignKey(User)
-    
-    VALID_TYPES = [
-        ('global', 'global'),
-        ('restaurants', 'restaurants'),
-        ('utility', 'utility'),
-        ('inn', 'inn'),
-        ('entertainment', 'entertainment'),
-    ]
-    type = models.CharField(max_length=255, choices=VALID_TYPES)
-
-    VALID_SUBTYPES = [
-        ('neighbourhood', 'neighbourhood'),
-        ('price', 'price'),
-        ('inn_type', 'inn_type'),
-        ('restaurant_type', 'restaurant_type'),
-        ('entertainment_type', 'entertainment_type'),
-    ]
-    subtype = models.CharField(max_length=255, choices=VALID_SUBTYPES)
-    
-    value = models.CharField(max_length=255)
