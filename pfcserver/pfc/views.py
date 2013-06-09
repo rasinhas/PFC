@@ -162,7 +162,6 @@ def query(request):
                 params['dataset'] = args['dataset']
             aux['description'] = parse_description(**params)
             if not aux['description']:
-                print d
                 continue
             aux['name'] = d['name']
             ret.append(aux)
@@ -191,6 +190,19 @@ def parse_description(results, db='infraestruturas', dataset='delegacias-policia
             short_text,
         )
     elif dataset == "o-que-fazer":
+        address = results['geoResult']['address']
+        style = results['taxonomies'][0]['type']
+        price = results['characteristics']['price']
+        short_text = ""
+        if 'description' in results and 'short_text' in results['description']:
+            short_text = results['description']['short_text']
+        desc = u"Type: {0}\nPrice: {1}\nAddress: {2}\nDescription: {3}".format(
+            style,
+            price,
+            address,
+            short_text,
+        )
+    elif dataset == "onde-dormir":
         address = results['geoResult']['address']
         style = results['taxonomies'][0]['type']
         price = results['characteristics']['price']

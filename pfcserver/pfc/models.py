@@ -29,7 +29,15 @@ class Auth(models.Model):
                 obj.expires = expires
                 obj.save()
             except requests.Timeout:
-                return q[cnt-1]
+                ## FIXME -- tratar melhor isso. Se não conseguir se comunicar com o datamine e o banco tiver vazio da merda
+                ## workaround -- se n tiver objeto no banco eu crio um carteado
+                if cnt > 0:
+                    return q[cnt-1]
+                else:
+                    obj = cls()
+                    obj.token = '0'
+                    obj.expires = datetime.datetime.now()
+                    obj.save()
         return obj
 
 class User(models.Model):
