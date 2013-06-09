@@ -78,16 +78,6 @@ def check_filters(obj, filters):
     if 'price' in filters and obj['characteristics']['price'] != filters['price']:
         return 0
 
-    if 'food_types' in filters:
-        valid = 0
-        if (not 'taxonomies' in obj) or (not 'type' in obj['taxonomies'][0]):
-            return 0
-        for t in filters['food_types']:
-            if t in obj['taxonomies'][0]['type']:
-                valid=1
-        if not valid:
-            return 0
-
     if 'type' in filters:
         valid = 0
         if (not 'taxonomies' in obj) or (not 'type' in obj['taxonomies'][0]):
@@ -148,7 +138,6 @@ def query(request):
             if 'extras' in args:
                 if not check_filters(d, args['extras']):
                     continue
-
 
             aux = {}
             if 'geoResult' in d:

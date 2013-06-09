@@ -16,14 +16,13 @@ def request_info(db="infraestruturas",dataset="delegacias-policiais",query_dict=
         The last parameter is the desired format of the response (json/kml).
     '''
 
-    token = Auth.get_token().token
-    headers = {'Authorization': token}
-
-    query = urllib.urlencode(query_dict).replace("+"," ")
-
-    url = "http://api.riodatamine.com.br/rest/{0}/{1}?format={2}&{3}".format(db,dataset,response_format,query)
-    
     try:
+        token = Auth.get_token().token
+        headers = {'Authorization': token}
+
+        query = urllib.urlencode(query_dict).replace("+"," ")
+
+        url = "http://api.riodatamine.com.br/rest/{0}/{1}?format={2}&{3}".format(db,dataset,response_format,query)
         req = requests.get(url,headers=headers, timeout=1)
         return json.loads(req.content)
     except requests.Timeout:

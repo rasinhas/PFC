@@ -19,25 +19,15 @@ class Auth(models.Model):
             obj = q[cnt-1] 
         else:
             # request to the server
+            # in case of timeout, a requests.Timeout exception is raised
             auth_url = "http://api.riodatamine.com.br/rest/request-token?app-id={0}&app-secret={1}".format(settings.APP_ID, settings.APP_SECRET)
-            try:
-                request = requests.get(auth_url, timeout=1)
-                token = request.headers["x-access-token"]
-                expires = datetime.datetime.fromtimestamp(float(request.headers["x-access-token-expires"]))
-                obj = cls()
-                obj.token = token
-                obj.expires = expires
-                obj.save()
-            except requests.Timeout:
-                ## FIXME -- tratar melhor isso. Se não conseguir se comunicar com o datamine e o banco tiver vazio da merda
-                ## workaround -- se n tiver objeto no banco eu crio um carteado
-                if cnt > 0:
-                    return q[cnt-1]
-                else:
-                    obj = cls()
-                    obj.token = '0'
-                    obj.expires = datetime.datetime.now()
-                    obj.save()
+            request = requests.get(auth_url, timeout=1)
+            token = request.headers["x-access-token"]
+            expires = datetime.datetime.fromtimestamp(float(request.headers["x-access-token-expires"]))
+            obj = cls()
+            obj.token = token
+            obj.expires = expires
+            obj.save()
         return obj
 
 class User(models.Model):
