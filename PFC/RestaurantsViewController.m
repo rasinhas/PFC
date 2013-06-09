@@ -116,7 +116,7 @@
                                         },
                                 @"extras":@{
                                         @"price": self.priceLabel.text,
-                                        @"food_types": selected,
+                                        @"type": selected,
                                         },
                                 };
         [self makeRequest:query];

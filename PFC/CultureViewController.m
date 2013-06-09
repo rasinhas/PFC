@@ -26,6 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.neighTextField setDelegate:self];
+    NSDictionary *inn_preferences = [[[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"] valueForKey:@"inn"];
+    
+    [self.neighTextField setText: [inn_preferences valueForKey:@"neighbourhood"]];
+    self.priceLabel.text = [inn_preferences valueForKey:@"price"];
+    self.priceSlider.value = self.priceLabel.text.length;
     // Do any additional setup after loading the view from its nib.
 }
 
