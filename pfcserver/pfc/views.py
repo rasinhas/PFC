@@ -73,6 +73,16 @@ def edit_profile(request):
 
     return HttpResponse(json.dumps(ret), mimetype='application/json')
 
+def save_preferences(request):
+    u = User.objects.get(id=int(request.POST.get("uid")));
+    preferences = json.loads(request.POST.get("preferences"))
+    for type, subtype_dict in preferences.items():
+        for subtype, value in subtype_dict.items():
+            setattr(u, "preference_{0}_{1}".format(type, subtype), value)
+    u.save()
+    ret = { 'success': True, }
+    return HttpResponse(json.dumps(ret), mimetype='application/json')
+
 def check_filters(obj, filters):
 
     if 'price' in filters and obj['characteristics']['price'] != filters['price']:

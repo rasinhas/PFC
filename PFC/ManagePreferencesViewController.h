@@ -21,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *innPriceTextField;
 @property (weak, nonatomic) IBOutlet UITextField *entertainmentNeighTextField;
 @property (weak, nonatomic) IBOutlet UITextField *entertainmentPriceTextField;
+@property (strong, nonatomic) NSDictionary *preferences;
+- (IBAction)savePreferences:(id)sender;
 
 @end

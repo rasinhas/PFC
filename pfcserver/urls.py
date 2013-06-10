@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^webservice/login/$', 'pfc.views.login', name='login'),
     url(r'^webservice/register/$', 'pfc.views.register', name='register'),
     url(r'^webservice/edit_profile/$', 'pfc.views.edit_profile', name='edit_profile'),
+    url(r'^webservice/save_preferences/$', 'pfc.views.save_preferences', name='save_preferences'),
     # Examples:
     # url(r'^$', 'pfcserver.views.home', name='home'),
     # url(r'^pfcserver/', include('pfcserver.foo.urls')),
