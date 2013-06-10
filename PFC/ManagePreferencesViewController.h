@@ -11,7 +11,7 @@
 #import "JSON.h"
 #import "MyUIViewController.h"
 
-@interface ManagePreferencesViewController : MyUIViewController <UITextFieldDelegate>
+@interface ManagePreferencesViewController : MyUIViewController <ASIHTTPRequestDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 - (IBAction)cancel:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *utilityNeighTextField;
 @property (weak, nonatomic) IBOutlet UITextField *restaurantNeighTextField;
@@ -26,5 +26,8 @@
 
 @property (strong, nonatomic) NSDictionary *preferences;
 - (IBAction)savePreferences:(id)sender;
+@property (weak, nonatomic) IBOutlet UIPickerView *typePicker;
+@property (strong, nonatomic) NSArray *restaurant_types;
+- (IBAction)enableRestaurantTypes:(id)sender;
 
 @end

@@ -31,6 +31,8 @@
     self.restaurantTypeTextField.delegate = self;
     self.innNeighTextField.delegate = self;
     self.entertainmentNeighTextField.delegate = self;
+    self.typePicker.dataSource = self;
+    self.typePicker.delegate = self;
     
     self.preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
     self.utilityNeighTextField.text = [[self.preferences objectForKey:@"utility"] valueForKey:@"neighbourhood"];
@@ -41,6 +43,12 @@
     self.innPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"inn"] valueForKey:@"price"] length]-1;
     self.entertainmentNeighTextField.text = [[self.preferences objectForKey:@"entertainment"] valueForKey:@"neighbourhood"];
     self.entertainmentPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"entertainment"] valueForKey:@"price"] length]-1;
+    
+    self.restaurant_types = @[@"", @"fastfood", @"restaurants", @"bars"];
+    self.restaurantTypeTextField.inputView = self.typePicker;
+    self.restaurantTypeTextField.selectedTextRange = nil;
+    [ self.typePicker selectRow:[self.restaurant_types indexOfObject:self.restaurantTypeTextField.text] inComponent:0 animated:NO];
+    [ self.typePicker setHidden:YES];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -59,8 +67,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -99,6 +105,9 @@
     [request startAsynchronous];
 }
 
+
+# pragma mark - ASIHttpRequest Delegate
+
 -(void) requestFailed:(ASIHTTPRequest *)request
 {
     [self showError:@"Network connection problem."];
@@ -115,6 +124,43 @@
         [self showError:@"Internal Server Error."];
     }
     
+}
+
+
+- (IBAction)enableRestaurantTypes:(id)sender {
+    [self.typePicker setHidden:NO];
+    //FIXME: o cursor do mouse teria que desaparecer, ja que o keyboard nao esta sendo usado
+}
+
+
+# pragma mark - PickerView DataSource
+
+- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.restaurant_types count];
+}
+
+- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+
+    if (row == 0) {
+        return @"-------------";
+    }
+    return [self.restaurant_types objectAtIndex:row];
+}
+
+# pragma mark - PickerView Delegate
+
+- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.restaurantTypeTextField.text = [self.restaurant_types objectAtIndex:row];
+    [self.restaurantTypeTextField endEditing:YES];
+    [self.typePicker setHidden:YES];
 }
 
 @end
