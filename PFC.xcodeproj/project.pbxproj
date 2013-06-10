@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DEE4D0717657BDF0086E857 /* ManagePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE4D0517657BDE0086E857 /* ManagePreferencesViewController.m */; };
+		2DEE4D0817657BDF0086E857 /* ManagePreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DEE4D0617657BDF0086E857 /* ManagePreferencesViewController.xib */; };
 		910D50DB17427EA000A05EC7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910D50DA17427EA000A05EC7 /* CFNetwork.framework */; };
 		910D50DD17427F2800A05EC7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910D50DC17427F2800A05EC7 /* MobileCoreServices.framework */; };
 		910D50E117427F8500A05EC7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910D50E017427F8500A05EC7 /* SystemConfiguration.framework */; };
@@ -66,6 +68,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DEE4D0417657BDE0086E857 /* ManagePreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagePreferencesViewController.h; sourceTree = "<group>"; };
+		2DEE4D0517657BDE0086E857 /* ManagePreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagePreferencesViewController.m; sourceTree = "<group>"; };
+		2DEE4D0617657BDF0086E857 /* ManagePreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagePreferencesViewController.xib; sourceTree = "<group>"; };
 		910D50DA17427EA000A05EC7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		910D50DC17427F2800A05EC7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		910D50E017427F8500A05EC7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -298,6 +303,9 @@
 				91428FC0173A988B00C7374F /* ShowResultViewController.h */,
 				91428FC1173A988B00C7374F /* ShowResultViewController.m */,
 				91428FC2173A988C00C7374F /* ShowResultViewController.xib */,
+				2DEE4D0417657BDE0086E857 /* ManagePreferencesViewController.h */,
+				2DEE4D0517657BDE0086E857 /* ManagePreferencesViewController.m */,
+				2DEE4D0617657BDF0086E857 /* ManagePreferencesViewController.xib */,
 				91428FA7173A7B5700C7374F /* MapViewController.h */,
 				91428FA8173A7B5700C7374F /* MapViewController.m */,
 				91428FA9173A7B5700C7374F /* MapViewController.xib */,
@@ -416,6 +424,7 @@
 				91428FC4173A988C00C7374F /* ShowResultViewController.xib in Resources */,
 				91536A39174BB8010000E4BE /* JSON.LICENSE in Resources */,
 				91536A3A174BB8010000E4BE /* JSON.Readme in Resources */,
+				2DEE4D0817657BDF0086E857 /* ManagePreferencesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +465,7 @@
 				91536A3E174BB8010000E4BE /* SBJsonParser.m in Sources */,
 				91536A3F174BB8010000E4BE /* SBJsonWriter.m in Sources */,
 				91536A40174BB8010000E4BE /* TDBadgedCell.m in Sources */,
+				2DEE4D0717657BDF0086E857 /* ManagePreferencesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

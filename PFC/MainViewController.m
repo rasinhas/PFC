@@ -46,8 +46,8 @@
 }
 
 - (IBAction)managePreferences:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon" message:@"This service will be done soon" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    UIViewController *preferencesView = [[ManagePreferencesViewController alloc] initWithNibName:@"ManagePreferencesViewController" bundle:nil];
+    [self presentViewController:preferencesView animated:YES completion:nil];
 }
 
 

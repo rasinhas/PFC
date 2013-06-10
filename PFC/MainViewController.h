@@ -10,6 +10,7 @@
 #import "MyUIViewController.h"
 #import "EditProfileViewController.h"
 #import "SearchTypeViewController.h"
+#import "ManagePreferencesViewController.h"
 
 @interface MainViewController : MyUIViewController
 - (IBAction)editProfile:(id)sender;

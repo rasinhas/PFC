@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ShowResultViewController.h"
 #import "ASIHTTPRequest.h"
-#import "ASIFormDataRequest.h"
 #import "JSON.h"
 
 @interface MyUIViewController : UIViewController <ASIHTTPRequestDelegate>
