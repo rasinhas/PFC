@@ -18,9 +18,10 @@
 - (BOOL) isValid: (UITextField *) textField;
 - (void) showError:(NSString *) errorMessage;
 - (void) makeRequest:(NSDictionary *) args;
-- (void)prettify:(UIButton *)button;
-- (void)changeColor:(UIButton *)button;
-- (void)notImplementedError;
+- (void) prettify:(UIButton *)button;
+- (void) changeColor:(UIButton *)button;
+- (IBAction)updateColors:(id)sender;
+- (void) notImplementedError;
 @property (weak,nonatomic) NSString *NeighbourhoodErrorMessage;
 
 @end
