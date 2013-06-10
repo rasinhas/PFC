@@ -31,11 +31,8 @@
     self.restaurantTypeTextField.delegate = self;
     self.innNeighTextField.delegate = self;
     self.entertainmentNeighTextField.delegate = self;
-<<<<<<< HEAD
     self.typePicker.dataSource = self;
     self.typePicker.delegate = self;
-=======
->>>>>>> 07cfe90c05ebf0d7a877b5741a35bb62693515e3
     
     self.preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
     self.utilityNeighTextField.text = [[self.preferences objectForKey:@"utility"] valueForKey:@"neighbourhood"];
@@ -46,15 +43,12 @@
     self.innPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"inn"] valueForKey:@"price"] length]-1;
     self.entertainmentNeighTextField.text = [[self.preferences objectForKey:@"entertainment"] valueForKey:@"neighbourhood"];
     self.entertainmentPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"entertainment"] valueForKey:@"price"] length]-1;
-<<<<<<< HEAD
+
     
     self.restaurant_types = @[@"", @"fastfood", @"restaurants", @"bars"];
     self.restaurantTypeTextField.inputView = self.typePicker;
-    self.restaurantTypeTextField.selectedTextRange = nil;
     [ self.typePicker selectRow:[self.restaurant_types indexOfObject:self.restaurantTypeTextField.text] inComponent:0 animated:NO];
     [ self.typePicker setHidden:YES];
-=======
->>>>>>> 07cfe90c05ebf0d7a877b5741a35bb62693515e3
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -111,14 +105,9 @@
     [request startAsynchronous];
 }
 
-<<<<<<< HEAD
 
 # pragma mark - ASIHttpRequest Delegate
-=======
-- (IBAction)changeRestaurantPrice:(id)sender {
-    [self updateColors:self.restaurantPriceControlField];
-}
->>>>>>> 07cfe90c05ebf0d7a877b5741a35bb62693515e3
+
 
 -(void) requestFailed:(ASIHTTPRequest *)request
 {

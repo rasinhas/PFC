@@ -26,7 +26,9 @@
 
 @property (strong, nonatomic) NSDictionary *preferences;
 - (IBAction)savePreferences:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIPickerView *typePicker;
+
 @property (strong, nonatomic) NSArray *restaurant_types;
 - (IBAction)enableRestaurantTypes:(id)sender;
 
