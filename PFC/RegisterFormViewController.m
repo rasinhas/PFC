@@ -42,7 +42,6 @@
 
 - (IBAction)createUser:(id)sender
 {
-    //TODO: validacao e conexao com nosso servidor
     if(([_loginField.text isEqualToString: @""] == YES) || ([_passwordField.text isEqualToString: @""] == YES) )
     {
         [self showError:@"Username and Password are required."];

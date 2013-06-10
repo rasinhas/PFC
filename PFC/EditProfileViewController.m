@@ -42,7 +42,6 @@
 
 - (IBAction)saveProfile:(id)sender
 {
-    //TODO: validacao e conexao com nosso servidor
     if([_passwordField.text isEqualToString: @""] == YES )
     {
         [self showError:@"Password are required."];

@@ -35,7 +35,7 @@
     centerLocation.latitude = (location.latitude+userLocation.latitude)/2;
     centerLocation.longitude = (location.longitude+userLocation.longitude)/2;
     MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:[self.data objectForKey:@"name"] andCoordinate:location];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location,700,700);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerLocation,1500,1500);
     [self.mapView setRegion:region animated:YES];
     [self.mapView selectAnnotation:newAnnotation animated:YES];
     [self.mapView addAnnotation:newAnnotation];

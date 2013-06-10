@@ -106,7 +106,6 @@
         errors = [NSString stringWithFormat:@"%@\nPlease select at least one type of shop.", errors];
     }
     
-    // TODO : server filter
     if([ errors isEqualToString:@"" ]) {
         NSDictionary *query = @{
                                 @"db": @"visitar-rio",

@@ -84,10 +84,10 @@
                                     @"neighbourhood": self.neighTextField.text,
                                     },
                             @"extras": @{
-                                    @"type": @[@"Host",],
+                                    @"type": @[@"Albergues",],
                                     @"price": self.priceLabel.text,
                                     },
-                            };
+                            };  
     [self makeRequest:query];
 }
 
