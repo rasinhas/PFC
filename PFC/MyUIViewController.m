@@ -82,6 +82,18 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
+- (IBAction)updateColors:(id)sender {
+    UIColor *newColor = [UIColor colorWithRed:(50.0/255) green:(79.0/255) blue:(133.0/255) alpha:1.0];
+    UIColor *oldColor = [UIColor colorWithRed:(100.0/255) green:(129.0/255) blue:(183.0/255) alpha:1.0];
+    for (int i=0; i<[sender numberOfSegments]; i++) {
+        if ([[[sender subviews] objectAtIndex:i] isSelected]) {
+            [[[sender subviews] objectAtIndex:i] setTintColor:newColor];
+        } else {
+            [[[sender subviews] objectAtIndex:i] setTintColor:oldColor];
+        }
+    }
+}
+
 - (void)prettify:(UIButton *)button
 {
     button.layer.borderWidth = 0.5f;

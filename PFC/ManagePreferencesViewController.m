@@ -28,26 +28,30 @@
     [super viewDidLoad];
     self.utilityNeighTextField.delegate = self;
     self.restaurantNeighTextField.delegate = self;
-    self.restaurantPriceTextField.delegate = self;
     self.restaurantTypeTextField.delegate = self;
     self.innNeighTextField.delegate = self;
-    self.innPriceTextField.delegate = self;
     self.entertainmentNeighTextField.delegate = self;
-    self.entertainmentPriceTextField.delegate = self;
-    
     
     self.preferences = [[NSUserDefaults standardUserDefaults] valueForKey:@"preferences"];
     self.utilityNeighTextField.text = [[self.preferences objectForKey:@"utility"] valueForKey:@"neighbourhood"];
     self.restaurantNeighTextField.text = [[self.preferences objectForKey:@"restaurant"] valueForKey:@"neighbourhood"];
-    self.restaurantPriceTextField.text = [[self.preferences objectForKey:@"restaurant"] valueForKey:@"price"];
+    self.restaurantPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"restaurant"] valueForKey:@"price"] length]-1;
     self.restaurantTypeTextField.text = [[self.preferences objectForKey:@"restaurant"] valueForKey:@"type"];
     self.innNeighTextField.text = [[self.preferences objectForKey:@"inn"] valueForKey:@"neighbourhood"];
-    self.innPriceTextField.text = [[self.preferences objectForKey:@"inn"] valueForKey:@"price"];
+    self.innPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"inn"] valueForKey:@"price"] length]-1;
     self.entertainmentNeighTextField.text = [[self.preferences objectForKey:@"entertainment"] valueForKey:@"neighbourhood"];
-    self.entertainmentPriceTextField.text = [[self.preferences objectForKey:@"entertainment"] valueForKey:@"price"];
-
+    self.entertainmentPriceControlField.selectedSegmentIndex = [[[self.preferences objectForKey:@"entertainment"] valueForKey:@"price"] length]-1;
     
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateColors:self.restaurantPriceControlField];
+    [self updateColors:self.innPriceControlField];
+    [self updateColors:self.entertainmentPriceControlField];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,16 +73,16 @@
         },
         @"restaurant": @{
             @"neighbourhood": self.restaurantNeighTextField.text,
-            @"price": self.restaurantPriceTextField.text,
+            @"price": [self.restaurantPriceControlField titleForSegmentAtIndex:[self.restaurantPriceControlField selectedSegmentIndex]],
             @"type": self.restaurantTypeTextField.text,
         },
         @"inn": @{
             @"neighbourhood": self.innNeighTextField.text,
-            @"price": self.innPriceTextField.text,
+            @"price": [self.innPriceControlField titleForSegmentAtIndex:[self.innPriceControlField selectedSegmentIndex]],
         },
         @"entertainment": @{
             @"neighbourhood": self.entertainmentNeighTextField.text,
-            @"price": self.entertainmentPriceTextField.text,
+            @"price": [self.entertainmentPriceControlField titleForSegmentAtIndex:[self.entertainmentPriceControlField selectedSegmentIndex]],
         },
     };
     

@@ -15,12 +15,15 @@
 - (IBAction)cancel:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *utilityNeighTextField;
 @property (weak, nonatomic) IBOutlet UITextField *restaurantNeighTextField;
-@property (weak, nonatomic) IBOutlet UITextField *restaurantPriceTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *restaurantPriceControlField;
+
 @property (weak, nonatomic) IBOutlet UITextField *restaurantTypeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *innNeighTextField;
-@property (weak, nonatomic) IBOutlet UITextField *innPriceTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *innPriceControlField;
+
 @property (weak, nonatomic) IBOutlet UITextField *entertainmentNeighTextField;
-@property (weak, nonatomic) IBOutlet UITextField *entertainmentPriceTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *entertainmentPriceControlField;
+
 @property (strong, nonatomic) NSDictionary *preferences;
 - (IBAction)savePreferences:(id)sender;
 
