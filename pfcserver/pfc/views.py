@@ -199,7 +199,7 @@ def parse_description(results, db='infraestruturas', dataset='delegacias-policia
             style,
             price,
             address,
-            short_text,
+            short_text[0:50],
         )
     elif dataset == "onde-dormir":
         address = results['geoResult']['address']

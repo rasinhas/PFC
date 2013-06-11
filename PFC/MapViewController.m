@@ -32,10 +32,10 @@
     CLLocationCoordinate2D centerLocation;
     location.longitude = [[self.data valueForKey:@"longitude"] doubleValue];
     location.latitude = [[self.data valueForKey:@"latitude"] doubleValue];
-    centerLocation.latitude = (location.latitude+userLocation.latitude)/2;
-    centerLocation.longitude = (location.longitude+userLocation.longitude)/2;
+    centerLocation.latitude = (location.latitude+userLocation.latitude)/2.0;
+    centerLocation.longitude = (location.longitude+userLocation.longitude)/2.0;
     MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:[self.data objectForKey:@"name"] andCoordinate:location];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerLocation,1500,1500);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location,3000,3000);
     [self.mapView setRegion:region animated:YES];
     [self.mapView selectAnnotation:newAnnotation animated:YES];
     [self.mapView addAnnotation:newAnnotation];

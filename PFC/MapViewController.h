@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "MapViewAnnotation.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) NSDictionary *data;
 - (IBAction)back:(id)sender;
